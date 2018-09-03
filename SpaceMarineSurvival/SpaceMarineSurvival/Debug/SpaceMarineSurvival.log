@@ -1,9 +1,13 @@
 ﻿  Model.cpp
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.h(80): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(139): warning C4018: '<': errata corrispondenza tra signed e unsigned
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(249): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(252): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(255): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(258): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
-  SpaceMarineSurvival.vcxproj -> C:\Users\Daniele\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.exe
-  SpaceMarineSurvival.vcxproj -> C:\Users\Daniele\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.pdb (Partial PDB)
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.h(82): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(143): warning C4018: '<': errata corrispondenza tra signed e unsigned
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(262): warning C4244: 'argomento': conversione da 'double' a 'float'. Possibile perdita di dati.
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(262): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(265): warning C4244: 'argomento': conversione da 'double' a 'float'. Possibile perdita di dati.
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(265): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(268): warning C4244: 'argomento': conversione da 'double' a 'float'. Possibile perdita di dati.
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(268): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(271): warning C4244: 'argomento': conversione da 'double' a 'float'. Possibile perdita di dati.
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(271): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+  SpaceMarineSurvival.vcxproj -> C:\Users\Tiziana\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.exe
+  SpaceMarineSurvival.vcxproj -> C:\Users\Tiziana\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.pdb (Partial PDB)

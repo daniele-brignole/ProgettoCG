@@ -10,7 +10,9 @@
 #include <gl\glu.h>			// Header File For The GLu32 Library
 
 #include "Model.h"
+#include "Stanza.h"
 #include "SOIL.h"
+
 
 // All Setup For OpenGL Goes Here
 bool MyModel::InitGL(void)
@@ -85,10 +87,12 @@ bool MyModel::LoadGLTextures(void)
 		SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 
 	if (texture[0] == 0) return false;
+	texture[1] = SOIL_load_OGL_texture
+	("../textures/marine_1.TGA",
+		SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+
+	if (texture[1] == 0) return false;
 	
-
-
-
 	// Typical Texture Generation Using Data From The Bitmap
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -143,10 +147,19 @@ bool MyModel::DrawGLScene(void)
 	}
 	glEnd();
 
+	glBindTexture(GL_TEXTURE_2D, texture[1]);
+
 	glBegin(GL_QUADS);
+	glTexCoord2f(0,0);
 	glVertex3f(p.x-0.05f,p.y-0.05f,p.z);
+	//glColor3f(1.0, 0.0, 0.0);
+	glTexCoord2f(1,0);
 	glVertex3f(p.x+0.05f,p.y-0.05f,p.z);
+	//glColor3f(1.0, 0.0, 0.0);
+	glTexCoord2f(1,1);
 	glVertex3f(p.x + 0.05f,p.y+0.05f,p.z);
+	//glColor3f(1.0, 0.0, 0.0);
+	glTexCoord2f(0,1);
 	glVertex3f(p.x -0.05f, p.y+0.05f, p.z);
 	glEnd();
 
@@ -246,16 +259,16 @@ void MyModel::move(int dir)
 {
 	switch (dir) {
 	case 0:
-		p.y = p.y + 0.001;
+		if(room.isMovePossible(dir,p.y+0.001)) p.y = p.y + 0.001;
 		break;
 	case 1:
-		p.x = p.x + 0.001;
+		if (room.isMovePossible(dir, p.x + 0.001)) p.x = p.x + 0.001;
 		break;
 	case 2:
-		p.y = p.y - 0.001;
+		if (room.isMovePossible(dir, p.y - 0.001)) p.y = p.y - 0.001;
 		break;
 	case 3:
-		p.x = p.x - 0.001;
+		if (room.isMovePossible(dir, p.x - 0.001)) p.x = p.x - 0.001;
 		break;
 	}
 	

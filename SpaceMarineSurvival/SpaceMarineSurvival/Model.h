@@ -19,6 +19,7 @@
 #include <math.h>
 
 #include"Marine.h"
+#include "stanza.h"
 #define PI 3.141592654
 
 // A class for storing vetices
@@ -65,9 +66,10 @@ private:
 	double fps;
 	Marine marine;
 	Vertex p;
+	stanza room;
 	//  model data
 	std::vector<Vertex> Background;   // background
-	std::vector<Vertex> fire;         // floating fire
+	
 	clock_t Tstamp, Tstart;
 	double Full_elapsed;  // elapsed time in seconds from the beginning of the program
 
