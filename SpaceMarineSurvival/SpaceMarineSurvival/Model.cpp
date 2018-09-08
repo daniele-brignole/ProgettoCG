@@ -148,6 +148,10 @@ bool MyModel::DrawGLScene(void)
 	glEnd();
 
 	glBindTexture(GL_TEXTURE_2D, texture[1]);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_GREATER, 0);
 
 	glBegin(GL_QUADS);
 	glTexCoord2f(0,0);
@@ -162,6 +166,9 @@ bool MyModel::DrawGLScene(void)
 	glTexCoord2f(0,1);
 	glVertex3f(p.x -0.05f, p.y+0.05f, p.z);
 	glEnd();
+
+	glDisable(GL_BLEND);
+	glDisable(GL_ALPHA_TEST);
 
 	//  Some text
 	glMatrixMode(GL_MODELVIEW);				// Select The Modelview Matrix

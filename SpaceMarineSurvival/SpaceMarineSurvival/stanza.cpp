@@ -18,16 +18,16 @@ bool stanza::isMovePossible(int dir,float nextpos)
 {
 	switch (dir) {
 	case 0:
-		if (nextpos > top) return false;
+		if (nextpos > top-0.05f) return false;
 		break;
 	case 1:
-		if (nextpos > right) return false;
+		if (nextpos > right-0.05f) return false;
 		break;
 	case 2:
-		if (nextpos < bot) return false;
+		if (nextpos < bot+0.05f) return false;
 		break;
 	case 3:
-		if (nextpos < left) return false;
+		if (nextpos < left+0.05f) return false;
 		break;
 	}
 	return true;
