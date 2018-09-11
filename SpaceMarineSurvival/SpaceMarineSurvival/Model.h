@@ -142,6 +142,8 @@ public:
 	void ReSizeGLScene(int width, int height);
 	void glPrint(const char *fmt, ...);			// Custom GL "Print" Routine
 	void move(int dir);
+	void setMarineWatch(float x, float y);
+	Marine getMarine();
 private:
 	bool LoadGLTextures(void);
 	void SetProjection();

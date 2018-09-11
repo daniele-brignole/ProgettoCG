@@ -276,6 +276,16 @@ LRESULT CALLBACK WndProc(HWND	hWnd,			// Handle For This Window
 {
 	switch (uMsg)									// Check For Windows Messages
 	{
+	case WM_MOUSEMOVE:
+	{
+		POINTS p;
+		p = MAKEPOINTS(lParam);
+		float xt = p.x;
+		float yt = p.y;
+		Data.setMarineWatch(xt, yt);
+	}
+	break;
+
 	case WM_ACTIVATE:							// Watch For Window Activate Message
 	{
 		if (!HIWORD(wParam))					// Check Minimization State

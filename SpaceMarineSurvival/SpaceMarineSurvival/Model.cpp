@@ -188,8 +188,8 @@ bool MyModel::DrawGLScene(void)
 		this->fps = frames / frameTime;
 		this->frames = 0; this->frameTime = 0;
 	}
-	this->glPrint("Elapsed time: %6.2f sec.  -  Fps %6.2f",
-		Full_elapsed, fps);
+	this->glPrint("Looking now: %6.2f - %6.2f  -  Fps %6.2f",
+		marine.getLosx(), marine.getLosy(), fps);
 
 	if (this->Full_elapsed < 6) {
 		glRasterPos3f(-(float)plx + PixToCoord_X(10), (float)-ply + PixToCoord_Y(21),
@@ -280,3 +280,13 @@ void MyModel::move(int dir)
 	}
 	
 }
+
+void MyModel::setMarineWatch(float x, float y)
+{
+	this->marine.setLoS(x, y);
+}
+
+	Marine MyModel::getMarine()
+	{
+		return this->marine;
+	}
