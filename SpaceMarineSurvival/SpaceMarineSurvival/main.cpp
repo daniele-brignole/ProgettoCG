@@ -50,7 +50,7 @@ using namespace std;
 //#pragma comment( lib, "winmm.lib" )						// Search For WinMM Library While Linking
 
 class MyModel Data;
-
+int temp;
 LRESULT	CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);	// Declaration For WndProc
 
 														///////////////////////////////////////////////////////////
@@ -280,9 +280,10 @@ LRESULT CALLBACK WndProc(HWND	hWnd,			// Handle For This Window
 	{
 		POINTS p;
 		p = MAKEPOINTS(lParam);
-		float xt = p.x;
-		float yt = p.y;
+		float xt = -1.0f +(p.x/1416.0f * 2);
+		float yt = 1.0f - (p.y / 600.0f * 2);
 		Data.setMarineWatch(xt, yt);
+		Data.temp = Data.getMarine().calcolaVisuale();
 	}
 	break;
 

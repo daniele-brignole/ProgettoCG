@@ -1,4 +1,5 @@
 #pragma once
+
 class Marine
 {
 public:
@@ -15,6 +16,7 @@ public:
 	void setLoS(float x, float y);
 	float getLosx();
 	float getLosy();
+	int calcolaVisuale();
 private:
 	int pv;
 	int ammo;

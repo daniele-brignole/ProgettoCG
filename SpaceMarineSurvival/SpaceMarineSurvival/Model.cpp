@@ -188,8 +188,8 @@ bool MyModel::DrawGLScene(void)
 		this->fps = frames / frameTime;
 		this->frames = 0; this->frameTime = 0;
 	}
-	this->glPrint("Looking now: %6.2f - %6.2f  -  Fps %6.2f",
-		marine.getLosx(), marine.getLosy(), fps);
+	this->glPrint("Looking now: %6.2f - %6.2f - %d  -  Fps %6.2f",
+		marine.getLosx(), marine.getLosy(),temp, fps);
 
 	if (this->Full_elapsed < 6) {
 		glRasterPos3f(-(float)plx + PixToCoord_X(10), (float)-ply + PixToCoord_Y(21),
@@ -266,16 +266,28 @@ void MyModel::move(int dir)
 {
 	switch (dir) {
 	case 0:
-		if(room.isMovePossible(dir,p.y+0.001)) p.y = p.y + 0.001;
+		if (room.isMovePossible(dir, p.y + 0.001f)) {
+			p.y = p.y + 0.001f;
+			this->marine.setPosition(p.x, p.y);
+		}
 		break;
 	case 1:
-		if (room.isMovePossible(dir, p.x + 0.001)) p.x = p.x + 0.001;
+		if (room.isMovePossible(dir, p.x + 0.001f)) {
+			p.x = p.x + 0.001f;
+			this->marine.setPosition(p.x, p.y);
+		}
 		break;
 	case 2:
-		if (room.isMovePossible(dir, p.y - 0.001)) p.y = p.y - 0.001;
+		if (room.isMovePossible(dir, p.y - 0.001f)) {
+			p.y = p.y - 0.001f;
+			this->marine.setPosition(p.x, p.y);
+		}
 		break;
 	case 3:
-		if (room.isMovePossible(dir, p.x - 0.001)) p.x = p.x - 0.001;
+		if (room.isMovePossible(dir, p.x - 0.001f)) {
+			p.x = p.x - 0.001f;
+			this->marine.setPosition(p.x, p.y);
+		}
 		break;
 	}
 	
@@ -286,7 +298,7 @@ void MyModel::setMarineWatch(float x, float y)
 	this->marine.setLoS(x, y);
 }
 
-	Marine MyModel::getMarine()
+	Marine& MyModel::getMarine()
 	{
 		return this->marine;
 	}

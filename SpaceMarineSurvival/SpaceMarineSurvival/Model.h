@@ -55,6 +55,7 @@ public:
 	bool	keys[256];			// Array Used For The Keyboard Routine
 	bool	active;		      // Window Active Flag Set To TRUE By Default
 	bool	fullscreen;	    // Fullscreen Flag 
+	int temp;
 
 private:
 	//  projection limits in X and Y: x in [-plx, plx], y in [-ply, ply]
@@ -143,7 +144,8 @@ public:
 	void glPrint(const char *fmt, ...);			// Custom GL "Print" Routine
 	void move(int dir);
 	void setMarineWatch(float x, float y);
-	Marine getMarine();
+
+	Marine& getMarine();
 private:
 	bool LoadGLTextures(void);
 	void SetProjection();
