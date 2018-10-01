@@ -51,6 +51,9 @@ using namespace std;
 
 class MyModel Data;
 int temp;
+GLdouble  model[16];
+GLdouble Proj[16];
+GLint view[4];
 LRESULT	CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);	// Declaration For WndProc
 
 														///////////////////////////////////////////////////////////
@@ -274,18 +277,11 @@ LRESULT CALLBACK WndProc(HWND	hWnd,			// Handle For This Window
 	WPARAM	wParam,			// Additional Message Information
 	LPARAM	lParam)			// Additional Message Information
 {
+	//FloatBuffer floatBuffer = ByteBuffer.allocateDirect(4).order(ByteOrder.nativeOrder()).asFloatBuffer();
+	
 	switch (uMsg)									// Check For Windows Messages
 	{
-	case WM_MOUSEMOVE:
-	{
-		POINTS p;
-		p = MAKEPOINTS(lParam);
-		float xt = -1.0f +(p.x/1416.0f * 2);
-		float yt = 1.0f - (p.y / 600.0f * 2);
-		Data.setMarineWatch(xt, yt);
-		Data.temp = Data.getMarine().calcolaVisuale();
-	}
-	break;
+	
 
 	case WM_ACTIVATE:							// Watch For Window Activate Message
 	{
@@ -296,7 +292,17 @@ LRESULT CALLBACK WndProc(HWND	hWnd,			// Handle For This Window
 		else { Data.active = FALSE; }		// Program Is No Longer Active
 		return 0;								      // Return To The Message Loop
 	}
+	case WM_RBUTTONDOWN:
+	{
+		Data.getMarine().spara(2);
+		break;
+	}
 
+	case WM_RBUTTONUP:
+	{
+		Data.getMarine().stopfire();
+		break;
+	}
 	case WM_SYSCOMMAND:							// Intercept System Commands
 	{
 		switch (wParam)							// Check System Calls
@@ -347,13 +353,7 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 														// Init of the default button depending on Data.fullscreen
 	unsigned long Def = MB_DEFBUTTON1;
 	if (!Data.fullscreen) Def = MB_DEFBUTTON2;
-	/*
-	if (MessageBox(NULL,"Would You Like To Run In Fullscreen Mode?",
-	"Start FullScreen?",MB_YESNO|MB_ICONQUESTION | Def) == IDNO)
-	{
-	Data.fullscreen=FALSE;							// Windowed Mode
-	}
-	*/
+	
 	Data.fullscreen = false;  // removed the boring request...
 
 							  // Create Our OpenGL Window
@@ -407,21 +407,38 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 			}
 	
 		}
-		if (Data.keys[VK_UP]) {
+		if (Data.keys['W']) {
 			Data.move(0);
 		}
-		if (Data.keys[VK_RIGHT]) {
+		if (Data.keys['D']) {
 			Data.move(1);
 		}
-		if (Data.keys[VK_DOWN]) {
+		if (Data.keys['S']) {
 			Data.move(2);
 		}
-		if (Data.keys[VK_LEFT]) {
+		if (Data.keys['A']) {
 			Data.move(3);
 		}
+		if (Data.keys[VK_RIGHT]) {
+			Data.getMarine().spara(1);
+		}
+		if (Data.keys[VK_LEFT]) {
+			Data.getMarine().spara(3);
+		}
+		if (Data.keys[VK_UP]) {
+			Data.getMarine().spara(0);
+		}
+		if (Data.keys[VK_DOWN]) {
+			Data.getMarine().spara(2);
+		}
+		if (!Data.keys[VK_RIGHT]) {
+			Data.getMarine().stopfire();
+		}
+
 	}
 
 	// Shutdown
 	KillGLWindow();									// Kill The Window
 	return (msg.wParam);							// Exit The Program
 }
+

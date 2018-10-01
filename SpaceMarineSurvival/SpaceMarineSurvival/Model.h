@@ -21,7 +21,7 @@
 #include"Marine.h"
 #include "stanza.h"
 #define PI 3.141592654
-
+using std::vector;
 // A class for storing vetices
 //  Vertex
 class Vertex {
@@ -61,7 +61,6 @@ private:
 	//  projection limits in X and Y: x in [-plx, plx], y in [-ply, ply]
 	double plx, ply;
 	int Wheight, Wwidth;  // window dimensions in pixels
-
 	int frames;           // n. of frames
 	double frameTime;     // for fps computation
 	double fps;
@@ -143,8 +142,8 @@ public:
 	void ReSizeGLScene(int width, int height);
 	void glPrint(const char *fmt, ...);			// Custom GL "Print" Routine
 	void move(int dir);
-	void setMarineWatch(float x, float y);
-
+	void setMarineWatch(GLdouble x, GLdouble y);
+	
 	Marine& getMarine();
 private:
 	bool LoadGLTextures(void);

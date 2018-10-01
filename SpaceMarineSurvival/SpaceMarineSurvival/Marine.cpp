@@ -4,6 +4,7 @@
 
 
 
+
 Marine::~Marine()
 {
 }
@@ -18,6 +19,28 @@ void Marine::setLoS(float x, float y)
 	this->losx = x;
 	this->losy = y;
 }
+void Marine::setIsFiring()
+{
+	isShooting = true;
+}bool Marine::isFiring()
+{
+	
+	return isShooting;
+}
+float Marine::spara(int x)
+{
+	shot temp;
+	temp.x = posx + 0.03;
+	temp.y = posy;
+	temp.dir = x;
+	onScreenShoot.push_back(temp);
+	//int d = onScreenShoot.size();
+	return 1;
+}
+void Marine::stopfire()
+{
+	isShooting = false;
+}
 float Marine::getLosx() {
 	return this->losx;
 }
@@ -27,40 +50,47 @@ float Marine::getLosy()
 	return losy;
 }
 
-int Marine::calcolaVisuale()
-{
-	/*double coeffangol;
-	coeffangol = (losy - posy) / (losx - posx);
-	double angolo = atan(coeffangol)*180/3.14;
-	//double prova = atan2(1.0,1.0);
-	if (losy >= posy) {
-		if (angolo < 45.0) return 2;
-		else if (angolo >= 45.0 && angolo <= 135.0) return 1;
-		else if (angolo > 135.0) return 4;
-	}
-	if (losy < posy) {
-		if (angolo > 45.0) return 2;
-		else if (angolo <= 45.0 && angolo <= 135.0) return 3;
-		else if (angolo < 135.0) return 4;
-	}
-	*/
-	float lx, ly;
-	lx = losx + posx;
-	ly = losy + posy;
-	if (lx > posx) {
-		if (ly > lx && ly > posy) return 1;
-		else if (ly < lx && ly < posy) return 3;
-		else if (ly < lx && ly > - lx) return 2;
-	}
-	else if (lx < posx) {
-		if (ly > - lx && ly > posy) return 1;
-		else if (ly < lx && ly < posy) return 3;
-		else if (ly < - lx && ly > lx) return 4;
-	}
-	else if (lx == posx) {
-		if (ly <= posy) return 3;
-		else return 1;
-	}
-	
 
+
+
+float Marine::getPosx()
+{
+	return this->posx;
+}
+
+float Marine::getPosy()
+{
+	return this->posy;
+}
+
+vector<shot>& Marine::getOnScreenShoot()
+{
+	return onScreenShoot;
+}
+
+void Marine::incrementshot() {
+	//vector<shot>::iterator itr = onScreenShoot.begin();
+	int dir;
+	for (int i = 0; i < onScreenShoot.size(); i++) {
+		dir = onScreenShoot[i].dir;
+		switch (dir) {
+		case 0:
+			onScreenShoot[i].y += 0.01;
+			if (onScreenShoot[i].y > 1)  onScreenShoot.erase(onScreenShoot.begin() + i);
+			break;
+		case 1:
+			onScreenShoot[i].x += 0.01;
+			if (onScreenShoot[i].x > 1.30)  onScreenShoot.erase(onScreenShoot.begin() + i);
+			break;
+		case 2:
+			onScreenShoot[i].y -= 0.01;
+			if (onScreenShoot[i].y < -1.30)  onScreenShoot.erase(onScreenShoot.begin() + i);
+			break;
+		case 3:
+			onScreenShoot[i].x -= 0.01;
+			if (onScreenShoot[i].x < -1.30)  onScreenShoot.erase(onScreenShoot.begin() + i);
+			break;
+			
+		}
+	}
 }

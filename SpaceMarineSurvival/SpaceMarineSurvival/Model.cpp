@@ -8,7 +8,7 @@
 #include <stdio.h>			// Header File For Standard Input/Output
 #include <gl\gl.h>			// Header File For The OpenGL32 Library
 #include <gl\glu.h>			// Header File For The GLu32 Library
-
+#include <vector>
 #include "Model.h"
 #include "Stanza.h"
 #include "SOIL.h"
@@ -93,6 +93,9 @@ bool MyModel::LoadGLTextures(void)
 
 	if (texture[1] == 0) return false;
 	
+	texture[2] = SOIL_load_OGL_texture(
+		"../textures/shot.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[2] == 0) return false;
 	// Typical Texture Generation Using Data From The Bitmap
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -127,6 +130,7 @@ bool MyModel::DrawGLScene(void)
 	clock_t t = clock();
 	// elapsed time in seconds from the last draw
 	double elapsed = double(t - Tstamp) / (double)CLOCKS_PER_SEC;
+	
 	// elapsed time in milliseconds from the last draw
 	int ms_elapsed = (int)(t - Tstamp);
 	// elapsed time in seconds from the beginning of the program
@@ -136,8 +140,10 @@ bool MyModel::DrawGLScene(void)
 	this->Tstamp = t;
 	//  TIMING - end
 
+	
+	glClear(GL_COLOR_BUFFER_BIT);
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
-
+	//glColor4f(0.0, 0.0, 0.0,1.0);
 	//  Background
 	glBegin(GL_QUADS);
 	for (int i = 0; i < Background.size(); i++) {
@@ -156,24 +162,77 @@ bool MyModel::DrawGLScene(void)
 	glBegin(GL_QUADS);
 	glTexCoord2f(0,0);
 	glVertex3f(p.x-0.05f,p.y-0.05f,p.z);
-	//glColor3f(1.0, 0.0, 0.0);
+	
 	glTexCoord2f(1,0);
 	glVertex3f(p.x+0.05f,p.y-0.05f,p.z);
-	//glColor3f(1.0, 0.0, 0.0);
+	
 	glTexCoord2f(1,1);
 	glVertex3f(p.x + 0.05f,p.y+0.05f,p.z);
-	//glColor3f(1.0, 0.0, 0.0);
+	
 	glTexCoord2f(0,1);
 	glVertex3f(p.x -0.05f, p.y+0.05f, p.z);
 	glEnd();
+	
+	glPointSize(0.050f);
+	
+	
+	/*if (this->marine.isFiring()) {
+		
+		
+		POINT p;
+		p.x = this->marine.getPosx(); p.y = this->marine.getPosy();
+	
+		glBegin(GL_QUADS);
 
-	glDisable(GL_BLEND);
+		glTexCoord2f(0.0,0.0);
+		glVertex3f(-0.03, -0.03, -5.0);
+
+		glTexCoord2f(1.0, 0.0);
+		glVertex3f(0.03, -0.03, -5.0);
+
+		glTexCoord2f(1.0, 1.0);
+		glVertex3f(0.03, 0.03, -5.0);
+
+		glTexCoord2f(0.0, 1.0);
+		glVertex3f(-0.03, 0.03, -5.0);
+		glEnd();
+
+		
+	}*/
+	this->marine.incrementshot();
+	vector<shot> temp = this->marine.getOnScreenShoot();
+	
+	
+	for (int i = 0; i < temp.size(); i++) {
+		glBindTexture(GL_TEXTURE_2D, texture[2]);
+		
+		glBegin(GL_QUADS);
+
+		glTexCoord2f(0.0, 0.0);
+		glVertex3f(temp[i].x-0.03, temp[i].y -0.03, -5.0);
+
+		glTexCoord2f(1.0, 0.0);
+		glVertex3f(temp[i].x + 0.03, temp[i].y - 0.03, -5.0);
+
+		glTexCoord2f(1.0, 1.0);
+		glVertex3f(temp[i].x+0.03, temp[i].y+ 0.03, -5.0);
+
+		glTexCoord2f(0.0, 1.0);
+		glVertex3f(temp[i].x -0.03, temp[i].y+ 0.03, -5.0);
+		glEnd();
+	}
 	glDisable(GL_ALPHA_TEST);
 
-	//  Some text
-	glMatrixMode(GL_MODELVIEW);				// Select The Modelview Matrix
-	glLoadIdentity();									// Reset The Current Modelview Matrix
+	// Reset The Current Modelview Matrix
 	glDisable(GL_TEXTURE_2D);
+
+
+	glDisable(GL_BLEND);
+	
+	glMatrixMode(GL_MODELVIEW);				// Select The Modelview Matrix
+	glLoadIdentity();
+	//  Some text
+	
 
 	// Color
 	glColor3f(1.0f, 1.0f, 1.0f);
@@ -293,10 +352,11 @@ void MyModel::move(int dir)
 	
 }
 
-void MyModel::setMarineWatch(float x, float y)
+void MyModel::setMarineWatch(GLdouble x, GLdouble y)
 {
 	this->marine.setLoS(x, y);
 }
+
 
 	Marine& MyModel::getMarine()
 	{

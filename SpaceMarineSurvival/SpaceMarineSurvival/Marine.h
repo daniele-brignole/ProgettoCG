@@ -1,4 +1,11 @@
 #pragma once
+#include <vector>
+using std::vector;
+struct shot {
+	float x;
+	float y;
+	int dir;
+};
 
 class Marine
 {
@@ -11,19 +18,29 @@ public:
 	};
 	~Marine();
 	void feritaSubita(int danno);
-	void spara();
+	float spara(int x);
 	void setPosition(float x, float y);
 	void setLoS(float x, float y);
+	void setIsFiring();
+	bool isFiring();
+	void stopfire();
 	float getLosx();
 	float getLosy();
-	int calcolaVisuale();
+	void incrementshot();
+	
+	float getPosx();
+	float getPosy();
 private:
 	int pv;
 	int ammo;
+	bool isShooting;
+	vector<shot> onScreenShoot;
+	
 	float posx;
 	float posy;
 	int rivolto;
 	float losx, losy;
-
+public:
+	vector<shot>& getOnScreenShoot();
 };
 
