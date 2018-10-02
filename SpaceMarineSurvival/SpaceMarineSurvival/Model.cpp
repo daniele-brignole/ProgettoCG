@@ -204,6 +204,7 @@ bool MyModel::DrawGLScene(void)
 	
 	
 	for (int i = 0; i < temp.size(); i++) {
+
 		glBindTexture(GL_TEXTURE_2D, texture[2]);
 		
 		glBegin(GL_QUADS);

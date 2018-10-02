@@ -1,11 +1,17 @@
-﻿  Model.cpp
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.h(82): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(149): warning C4018: '<': errata corrispondenza tra signed e unsigned
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(206): warning C4018: '<': errata corrispondenza tra signed e unsigned
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(212): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(215): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(218): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(221): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(357): warning C4244: 'argomento': conversione da 'GLdouble' a 'float'. Possibile perdita di dati.
-  SpaceMarineSurvival.vcxproj -> C:\Users\Tiziana\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.exe
-  SpaceMarineSurvival.vcxproj -> C:\Users\Tiziana\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.pdb (Partial PDB)
+﻿  stanza.cpp
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\marine.h(40): error C3646: 'stz': identificatore di override sconosciuto
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\marine.h(40): error C4430: identificatore di tipo mancante, verrà utilizzato int. Nota: default-int non è più supportato in C++
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\stanza.cpp(45): warning C4018: '<': errata corrispondenza tra signed e unsigned
+  Generazione del codice in corso...
+  Compilazione in corso...
+  Marine.cpp
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\marine.cpp(33): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\marine.cpp(74): warning C4018: '<': errata corrispondenza tra signed e unsigned
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\marine.cpp(78): warning C4305: '+=': troncamento da 'double' a 'float'
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\marine.cpp(82): warning C4305: '+=': troncamento da 'double' a 'float'
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\marine.cpp(86): warning C4305: '-=': troncamento da 'double' a 'float'
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\marine.cpp(90): warning C4305: '-=': troncamento da 'double' a 'float'
+  Generazione del codice in corso...
+  Omissione in corso... (nessuna modifica importante rilevata)
+  main.cpp
+  Model.cpp

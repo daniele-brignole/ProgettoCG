@@ -4,7 +4,14 @@
 
 stanza::stanza()
 {
-	float x = 
+	ostacolo1.x = 0.5;
+	ostacolo1.y = 0.5;
+
+	ostacolo2.x = -0.5;
+	ostacolo2.y = -0.5;
+	ostacoli.push_back(ostacolo1);
+	ostacoli.push_back(ostacolo2);
+	
 	contaround = 3;
 	top = 1;
 	bot = -1;
@@ -31,5 +38,13 @@ bool stanza::isMovePossible(int dir,float nextpos)
 		break;
 	}
 	return true;
+}
+
+bool stanza::checkCollision(float x, float y)
+{
+	for (int i = 0; i < ostacoli.size(); i++) {
+		if (ostacoli[i].x == x && ostacoli[i].y == y) return true;
+	}
+	return false;
 }
 

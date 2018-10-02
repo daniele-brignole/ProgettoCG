@@ -1,5 +1,7 @@
 #pragma once
+#include "stanza.h"
 #include <vector>
+
 using std::vector;
 struct shot {
 	float x;
@@ -35,7 +37,7 @@ private:
 	int ammo;
 	bool isShooting;
 	vector<shot> onScreenShoot;
-	
+	stanza stz;
 	float posx;
 	float posy;
 	int rivolto;

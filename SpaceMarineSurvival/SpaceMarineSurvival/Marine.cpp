@@ -92,5 +92,6 @@ void Marine::incrementshot() {
 			break;
 			
 		}
+		if (stz.checkCollision(onScreenShoot[i].x,onScreenShoot[i].y)) onScreenShoot.erase(onScreenShoot.begin() + i);
 	}
 }
