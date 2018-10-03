@@ -409,18 +409,22 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 	
 		}
 		if (Data.keys['W']) {
+			//Data.getMarine().setRivolto(3);
 			Data.move(0);
 		}
 		if (Data.keys['D']) {
 			Data.move(1);
 		}
 		if (Data.keys['S']) {
+			//Data.getMarine().setRivolto(1);
 			Data.move(2);
 		}
 		if (Data.keys['A']) {
+			//Data.getMarine().setRivolto(4);
 			Data.move(3);
 		}
 		if (Data.keys[VK_RIGHT]) {
+			Data.getMarine().setRivolto(2);
 			Data.getMarine().spara(1);
 		}
 		if (Data.keys[VK_LEFT]) {
@@ -430,6 +434,7 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 			Data.getMarine().spara(0);
 		}
 		if (Data.keys[VK_DOWN]) {
+			Data.getMarine().setRivolto(1);
 			Data.getMarine().spara(2);
 		}
 		if (!Data.keys[VK_RIGHT]) {

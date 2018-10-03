@@ -41,6 +41,10 @@ void Marine::stopfire()
 {
 	isShooting = false;
 }
+int Marine::getRivolto()
+{
+	return rivolto;
+}
 float Marine::getLosx() {
 	return this->losx;
 }
@@ -84,7 +88,7 @@ void Marine::incrementshot() {
 			break;
 		case 2:
 			onScreenShoot[i].y -= 0.01;
-			if (onScreenShoot[i].y < -1.30 || stz.checkCollision(onScreenShoot[i].x, onScreenShoot[i].y))  onScreenShoot.erase(onScreenShoot.begin() + i);
+			if (onScreenShoot[i].y < -1.0 || stz.checkCollision(onScreenShoot[i].x, onScreenShoot[i].y))  onScreenShoot.erase(onScreenShoot.begin() + i);
 			break;
 		case 3:
 			onScreenShoot[i].x -= 0.01;
@@ -99,4 +103,9 @@ void Marine::incrementshot() {
 		}
 	*/
 	}
+}
+
+void Marine::setRivolto(int val)
+{
+	this->rivolto = val;
 }

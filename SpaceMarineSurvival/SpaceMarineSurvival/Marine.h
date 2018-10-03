@@ -15,7 +15,7 @@ public:
 	Marine() {
 		pv = 100;
 		ammo = 200;
-		rivolto = 0;
+		rivolto = 1;
 		//losx = 0; losy = 0;
 	};
 	~Marine();
@@ -26,10 +26,11 @@ public:
 	void setIsFiring();
 	bool isFiring();
 	void stopfire();
+	int getRivolto();
 	float getLosx();
 	float getLosy();
 	void incrementshot();
-	
+	void setRivolto(int val);
 	float getPosx();
 	float getPosy();
 private:

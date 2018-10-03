@@ -93,10 +93,14 @@ bool MyModel::LoadGLTextures(void)
 	if (texture[1] == 0) return false;
 	
 	texture[2] = SOIL_load_OGL_texture(
-		"../textures/shot.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+		"../textures/marine_2.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (texture[2] == 0) return false;
 	
 	texture[3] = SOIL_load_OGL_texture(
+		"../textures/shot.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[3] == 0) return false;
+
+	texture[4] = SOIL_load_OGL_texture(
 		"../textures/blocco.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (texture[3] == 0) return false;
 	
@@ -156,8 +160,8 @@ bool MyModel::DrawGLScene(void)
 		glVertex3f(Background[i].x, Background[i].y, Background[i].z);
 	}
 	glEnd();
-
-	glBindTexture(GL_TEXTURE_2D, texture[1]);
+	int rivolto = marine.getRivolto();
+	glBindTexture(GL_TEXTURE_2D, texture[rivolto]);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_ALPHA_TEST);
@@ -179,7 +183,7 @@ bool MyModel::DrawGLScene(void)
 	
 	
 	
-	glBindTexture(GL_TEXTURE_2D, texture[3]);
+	glBindTexture(GL_TEXTURE_2D, texture[4]);
 	std::vector<ostacolo> blocchi = room.getOstacoli();
 	for (int b = 0; b < blocchi.size(); b++) {
 		glBegin(GL_QUADS);
@@ -202,8 +206,9 @@ bool MyModel::DrawGLScene(void)
 	
 	
 	for (int i = 0; i < temp.size(); i++) {
-
-		glBindTexture(GL_TEXTURE_2D, texture[2]);
+		
+		glBindTexture(GL_TEXTURE_2D, texture[3]);
+		
 		
 		glBegin(GL_QUADS);
 
@@ -219,6 +224,7 @@ bool MyModel::DrawGLScene(void)
 		glTexCoord2f(0.0, 1.0);
 		glVertex3f(temp[i].x -0.03, temp[i].y+ 0.03, -5.0);
 		glEnd();
+		glLoadIdentity();
 	}
 	glDisable(GL_ALPHA_TEST);
 
