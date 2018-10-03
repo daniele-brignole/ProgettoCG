@@ -76,22 +76,27 @@ void Marine::incrementshot() {
 		switch (dir) {
 		case 0:
 			onScreenShoot[i].y += 0.01;
-			if (onScreenShoot[i].y > 1)  onScreenShoot.erase(onScreenShoot.begin() + i);
+			if (onScreenShoot[i].y > 1 || stz.checkCollision(onScreenShoot[i].x, onScreenShoot[i].y))  onScreenShoot.erase(onScreenShoot.begin() + i);
 			break;
 		case 1:
 			onScreenShoot[i].x += 0.01;
-			if (onScreenShoot[i].x > 1.30)  onScreenShoot.erase(onScreenShoot.begin() + i);
+			if (onScreenShoot[i].x > 1.30 || stz.checkCollision(onScreenShoot[i].x, onScreenShoot[i].y))  onScreenShoot.erase(onScreenShoot.begin() + i);
 			break;
 		case 2:
 			onScreenShoot[i].y -= 0.01;
-			if (onScreenShoot[i].y < -1.30)  onScreenShoot.erase(onScreenShoot.begin() + i);
+			if (onScreenShoot[i].y < -1.30 || stz.checkCollision(onScreenShoot[i].x, onScreenShoot[i].y))  onScreenShoot.erase(onScreenShoot.begin() + i);
 			break;
 		case 3:
 			onScreenShoot[i].x -= 0.01;
-			if (onScreenShoot[i].x < -1.30)  onScreenShoot.erase(onScreenShoot.begin() + i);
+			if (onScreenShoot[i].x < -1.30 || stz.checkCollision(onScreenShoot[i].x, onScreenShoot[i].y))  onScreenShoot.erase(onScreenShoot.begin() + i);
 			break;
 			
 		}
-		if (stz.checkCollision(onScreenShoot[i].x,onScreenShoot[i].y)) onScreenShoot.erase(onScreenShoot.begin() + i);
+		/*if (onScreenShoot.size() > 0) {
+			int size = onScreenShoot.size();
+			//if (stz.checkCollision(onScreenShoot[i].x, onScreenShoot[i].y)) onScreenShoot.erase(onScreenShoot.begin() + i);
+		
+		}
+	*/
 	}
 }

@@ -17,9 +17,9 @@
 #include <vector>
 #include <time.h>
 #include <math.h>
-
-#include"Marine.h"
 #include "stanza.h"
+#include"Marine.h"
+
 #define PI 3.141592654
 using std::vector;
 // A class for storing vetices

@@ -85,17 +85,21 @@ bool MyModel::LoadGLTextures(void)
 	texture[0] = SOIL_load_OGL_texture
 	("../textures/metal_floor.jpg",
 		SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-
 	if (texture[0] == 0) return false;
+	
 	texture[1] = SOIL_load_OGL_texture
 	("../textures/marine_1.TGA",
 		SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-
 	if (texture[1] == 0) return false;
 	
 	texture[2] = SOIL_load_OGL_texture(
 		"../textures/shot.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (texture[2] == 0) return false;
+	
+	texture[3] = SOIL_load_OGL_texture(
+		"../textures/blocco.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[3] == 0) return false;
+	
 	// Typical Texture Generation Using Data From The Bitmap
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -173,32 +177,26 @@ bool MyModel::DrawGLScene(void)
 	glVertex3f(p.x -0.05f, p.y+0.05f, p.z);
 	glEnd();
 	
-	glPointSize(0.050f);
 	
 	
-	/*if (this->marine.isFiring()) {
-		
-		
-		POINT p;
-		p.x = this->marine.getPosx(); p.y = this->marine.getPosy();
-	
+	glBindTexture(GL_TEXTURE_2D, texture[3]);
+	std::vector<ostacolo> blocchi = room.getOstacoli();
+	for (int b = 0; b < blocchi.size(); b++) {
 		glBegin(GL_QUADS);
 
-		glTexCoord2f(0.0,0.0);
-		glVertex3f(-0.03, -0.03, -5.0);
+		glTexCoord2f(0.0, 0.0);
+		glVertex3f(blocchi[b].x-0.1, blocchi[b].y - 0.1, -5.0);
 
 		glTexCoord2f(1.0, 0.0);
-		glVertex3f(0.03, -0.03, -5.0);
+		glVertex3f(blocchi[b] .x+ 0.1, blocchi[b].y -0.1, -5.0);
 
 		glTexCoord2f(1.0, 1.0);
-		glVertex3f(0.03, 0.03, -5.0);
+		glVertex3f(blocchi[b].x + 0.1, blocchi[b].y + 0.1, -5.0);
 
 		glTexCoord2f(0.0, 1.0);
-		glVertex3f(-0.03, 0.03, -5.0);
+		glVertex3f(blocchi[b].x - 0.1, blocchi[b].y + 0.1, -5.0);
 		glEnd();
-
-		
-	}*/
+	}
 	this->marine.incrementshot();
 	vector<shot> temp = this->marine.getOnScreenShoot();
 	
@@ -234,7 +232,7 @@ bool MyModel::DrawGLScene(void)
 	glLoadIdentity();
 	//  Some text
 	
-
+	/*
 	// Color
 	glColor3f(1.0f, 1.0f, 1.0f);
 
@@ -256,7 +254,7 @@ bool MyModel::DrawGLScene(void)
 			-4);
 		this->glPrint("F2/F3/F4 for sounds");
 	}
-
+	*/
 	glEnable(GL_TEXTURE_2D);							// Enable Texture Mapping
 	return true;
 }

@@ -43,8 +43,10 @@ bool stanza::isMovePossible(int dir,float nextpos)
 bool stanza::checkCollision(float x, float y)
 {
 	for (int i = 0; i < ostacoli.size(); i++) {
-		if (ostacoli[i].x == x && ostacoli[i].y == y) return true;
+		if (x > ostacoli[i].x - 0.1 && x < ostacoli[i].x + 0.1 && y > ostacoli[i].y - 0.1&& y < ostacoli[i].y + 0.1) return true;
 	}
 	return false;
 }
-
+std::vector<ostacolo>& stanza::getOstacoli() {
+	return ostacoli;
+}

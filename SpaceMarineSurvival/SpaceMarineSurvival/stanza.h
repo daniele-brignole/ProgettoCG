@@ -1,5 +1,5 @@
 #pragma once
-#include "Marine.h"
+
 #include <vector>
 #include <windows.h>		// Header File For Windows
 #include <stdio.h>			// Header File For Standard Input/Output
@@ -20,6 +20,7 @@ public:
 	stanza(int lunghezza, int altezza);
 	bool isMovePossible(int dir,float nextpos);
 	bool checkCollision(float x, float y);
+	std::vector<ostacolo>& getOstacoli();
 private:
 	int lunghezza, altezza;
 	int contaround;
