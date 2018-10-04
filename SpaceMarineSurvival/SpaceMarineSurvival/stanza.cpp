@@ -12,7 +12,8 @@ stanza::stanza()
 	ostacoli.push_back(ostacolo1);
 	ostacoli.push_back(ostacolo2);
 	
-	contaround = 3;
+	contanemici = 0;
+	contaround = 1;
 	top = 1;
 	bot = -1;
 	left = -1.0f - (1.0f / 3);
@@ -49,4 +50,29 @@ bool stanza::checkCollision(float x, float y)
 }
 std::vector<ostacolo>& stanza::getOstacoli() {
 	return ostacoli;
+}
+
+void stanza::addEnemy()
+{
+	if (contanemici < 5) {
+		contanemici++;
+		nemico n = generaNemico();
+		nemici.push_back(n);
+	}
+}
+
+nemico stanza::generaNemico()
+{
+	int newNumber = (rand() % (contaround)) + 1;
+	switch (newNumber) {
+	case 1:
+		return cultista(1);
+		break;
+	case 2:
+		return chmarine(1);
+		break;
+	case 3:
+		return posseduto(1);
+		break;
+	}
 }

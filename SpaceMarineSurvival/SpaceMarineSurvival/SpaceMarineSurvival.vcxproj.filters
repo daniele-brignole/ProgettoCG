@@ -30,6 +30,15 @@
     <ClCompile Include="cultista.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="nemico.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="chmarine.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="posseduto.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="audiere.h">
@@ -48,6 +57,15 @@
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="cultista.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="nemico.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="chmarine.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="posseduto.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>

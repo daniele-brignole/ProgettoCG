@@ -114,17 +114,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="chmarine.cpp" />
     <ClCompile Include="cultista.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Marine.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="nemico.cpp" />
+    <ClCompile Include="posseduto.cpp" />
     <ClCompile Include="stanza.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="audiere.h" />
+    <ClInclude Include="chmarine.h" />
     <ClInclude Include="cultista.h" />
     <ClInclude Include="Marine.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="nemico.h" />
+    <ClInclude Include="posseduto.h" />
     <ClInclude Include="SOIL.h" />
     <ClInclude Include="stanza.h" />
   </ItemGroup>

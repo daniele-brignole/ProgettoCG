@@ -1,5 +1,8 @@
 #pragma once
-
+#include "nemico.h"
+#include "cultista.h"
+#include "chmarine.h"
+#include "posseduto.h"
 #include <vector>
 #include <windows.h>		// Header File For Windows
 #include <stdio.h>			// Header File For Standard Input/Output
@@ -19,6 +22,8 @@ public:
 	bool isMovePossible(int dir,float nextpos);
 	bool checkCollision(float x, float y);
 	std::vector<ostacolo>& getOstacoli();
+	void addEnemy();
+	nemico generaNemico();
 private:
 	int lunghezza, altezza;
 	int contaround;
@@ -27,5 +32,6 @@ private:
 	ostacolo ostacolo1;
 	ostacolo ostacolo2;
 	std::vector<ostacolo> ostacoli;
+	std::vector<nemico> nemici;
 };
 
