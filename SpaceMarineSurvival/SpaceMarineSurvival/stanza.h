@@ -16,8 +16,6 @@ class stanza
 {
 public:
 	stanza();
-	
-	stanza(int lunghezza, int altezza);
 	bool isMovePossible(int dir,float nextpos);
 	bool checkCollision(float x, float y);
 	std::vector<ostacolo>& getOstacoli();

@@ -114,6 +114,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cultista.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Marine.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -121,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="audiere.h" />
+    <ClInclude Include="cultista.h" />
     <ClInclude Include="Marine.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="SOIL.h" />

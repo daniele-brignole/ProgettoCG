@@ -351,6 +351,7 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 	BOOL	done = FALSE;								// Bool Variable To Exit Loop
 
 														// Ask The User Which Screen Mode They Prefer
+		
 														// Init of the default button depending on Data.fullscreen
 	unsigned long Def = MB_DEFBUTTON1;
 	if (!Data.fullscreen) Def = MB_DEFBUTTON2;
@@ -380,7 +381,9 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 	//  AUDIO - end
 
 	//ShowCursor(FALSE);
-
+	clock_t now = 0;
+	clock_t last = 0;
+	double remain = 0.5;
 	while (!done)									// Loop That Runs While done=FALSE
 	{
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))	// Is There A Message Waiting?
@@ -408,6 +411,7 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 			}
 	
 		}
+		
 		if (Data.keys['W']) {
 			//Data.getMarine().setRivolto(3);
 			Data.move(0);
@@ -423,24 +427,38 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 			//Data.getMarine().setRivolto(4);
 			Data.move(3);
 		}
-		if (Data.keys[VK_RIGHT]) {
+		now = clock();
+		if (remain < 0 || last > 0) {
+			remain =  (double)(now-last)/(double)CLOCKS_PER_SEC;
+		}
+		if (Data.keys[VK_RIGHT] && remain >= 0.5) {
+			last = clock();
 			Data.getMarine().setRivolto(2);
 			Data.getMarine().spara(1);
+			remain = - 1;
+			
 		}
-		if (Data.keys[VK_LEFT]) {
+		if (Data.keys[VK_LEFT] && remain >= 0.5) {
+			last = clock();
+			Data.getMarine().setRivolto(4);
 			Data.getMarine().spara(3);
+			remain = 1;
 		}
-		if (Data.keys[VK_UP]) {
+		if (Data.keys[VK_UP] && remain >= 0.5) {
+			last = clock();
+			Data.getMarine().setRivolto(3);
 			Data.getMarine().spara(0);
+			remain = 1;
 		}
-		if (Data.keys[VK_DOWN]) {
+		if (Data.keys[VK_DOWN] && remain >= 0.5) {
+			last = clock();
 			Data.getMarine().setRivolto(1);
 			Data.getMarine().spara(2);
+			remain = 1;
+			
 		}
-		if (!Data.keys[VK_RIGHT]) {
-			Data.getMarine().stopfire();
-		}
-
+		
+		
 	}
 
 	// Shutdown

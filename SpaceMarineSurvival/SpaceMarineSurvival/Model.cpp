@@ -97,12 +97,32 @@ bool MyModel::LoadGLTextures(void)
 	if (texture[2] == 0) return false;
 	
 	texture[3] = SOIL_load_OGL_texture(
-		"../textures/shot.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+		"../textures/marine_3.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (texture[3] == 0) return false;
 
 	texture[4] = SOIL_load_OGL_texture(
+		"../textures/marine_4.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[4] == 0) return false;
+	
+	texture[5] = SOIL_load_OGL_texture(
+		"../textures/shot_down.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[5] == 0) return false;
+
+	texture[6] = SOIL_load_OGL_texture(
+		"../textures/shot.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[6] == 0) return false;
+
+	texture[7] = SOIL_load_OGL_texture(
+		"../textures/shot_up.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[7] == 0) return false;
+
+	texture[8] = SOIL_load_OGL_texture(
+		"../textures/shot_left.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[8] == 0) return false;
+
+	texture[9] = SOIL_load_OGL_texture(
 		"../textures/blocco.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-	if (texture[3] == 0) return false;
+	if (texture[9] == 0) return false;
 	
 	// Typical Texture Generation Using Data From The Bitmap
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
@@ -183,7 +203,7 @@ bool MyModel::DrawGLScene(void)
 	
 	
 	
-	glBindTexture(GL_TEXTURE_2D, texture[4]);
+	glBindTexture(GL_TEXTURE_2D, texture[9]);
 	std::vector<ostacolo> blocchi = room.getOstacoli();
 	for (int b = 0; b < blocchi.size(); b++) {
 		glBegin(GL_QUADS);
@@ -207,7 +227,7 @@ bool MyModel::DrawGLScene(void)
 	
 	for (int i = 0; i < temp.size(); i++) {
 		
-		glBindTexture(GL_TEXTURE_2D, texture[3]);
+		glBindTexture(GL_TEXTURE_2D, texture[rivolto +4]);
 		
 		
 		glBegin(GL_QUADS);
@@ -224,7 +244,7 @@ bool MyModel::DrawGLScene(void)
 		glTexCoord2f(0.0, 1.0);
 		glVertex3f(temp[i].x -0.03, temp[i].y+ 0.03, -5.0);
 		glEnd();
-		glLoadIdentity();
+		
 	}
 	glDisable(GL_ALPHA_TEST);
 
