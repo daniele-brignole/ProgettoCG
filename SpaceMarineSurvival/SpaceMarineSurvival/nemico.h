@@ -1,13 +1,19 @@
 #pragma once
+#include <stdio.h>
+#include<iostream>
 class nemico
 {
 public:
 	nemico();
 	~nemico();
-	int getRivolto();
-	bool isMoving();
+	void decidi();
+	void setId(int id);
+	int getId();
+	float getPosx();
+	float getPosy();
+	void move();
 private:
-	int rivolto;
-	bool moving;
+	int id;
+	float posx, posy;
 };
 

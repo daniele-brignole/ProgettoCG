@@ -1,5 +1,17 @@
-﻿  main.cpp
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.h(82): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\main.cpp(219): warning C4838: la conversione da 'int' a 'BYTE' richiede una conversione verso un tipo di dati più piccolo
-  SpaceMarineSurvival.vcxproj -> C:\Users\Tiziana\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.exe
-  SpaceMarineSurvival.vcxproj -> C:\Users\Tiziana\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.pdb (Partial PDB)
+﻿  Model.cpp
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.h(83): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(181): warning C4018: '<': errata corrispondenza tra signed e unsigned
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(212): warning C4018: '<': errata corrispondenza tra signed e unsigned
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(216): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(219): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(222): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(225): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(232): warning C4018: '<': errata corrispondenza tra signed e unsigned
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(240): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(243): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(246): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(249): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(256): warning C4018: '<': errata corrispondenza tra signed e unsigned
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(405): warning C4244: 'argomento': conversione da 'GLdouble' a 'float'. Possibile perdita di dati.
+  SpaceMarineSurvival.vcxproj -> C:\Users\Daniele\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.exe
+  SpaceMarineSurvival.vcxproj -> C:\Users\Daniele\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.pdb (Partial PDB)

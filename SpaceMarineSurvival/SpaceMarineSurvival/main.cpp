@@ -50,7 +50,8 @@ using namespace std;
 #pragma comment( lib, "glu32.lib" )						// Search For GLu32.lib While Linking
 //#pragma comment( lib, "winmm.lib" )						// Search For WinMM Library While Linking
 
-class MyModel Data;
+stanza room;
+class MyModel Data(room);
 int temp;
 GLdouble  model[16];
 GLdouble Proj[16];
@@ -400,6 +401,8 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 		}
 		else										// If There Are No Messages
 		{
+			room.addEnemy();
+			room.gestisci();
 			// Draw The Scene.  Watch For ESC Key And Quit Messages From DrawGLScene()
 			if ((Data.active && !Data.DrawGLScene()) || Data.keys[VK_ESCAPE])	// Active?  Was There A Quit Received?
 			{

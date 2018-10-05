@@ -24,6 +24,8 @@ public:
 	std::vector<ostacolo>& getOstacoli();
 	void addEnemy();
 	nemico generaNemico();
+	void gestisci();
+	std::vector<nemico> & getNemici();
 private:
 	int lunghezza, altezza;
 	int contaround;

@@ -6,10 +6,13 @@ class posseduto :
 public:
 	posseduto(int id);
 	~posseduto();
-
+	int getRivolto();
+	bool isMoving();
 private:
 	int pv;
 	int id;
 	float mov;
+	int rivolto;
+	bool moving;
 };
 

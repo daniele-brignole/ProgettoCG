@@ -124,6 +124,10 @@ bool MyModel::LoadGLTextures(void)
 		"../textures/blocco.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (texture[9] == 0) return false;
 	
+	texture[10] = SOIL_load_OGL_texture(
+		"../textures/golbat.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[10] == 0) return false;
+
 	// Typical Texture Generation Using Data From The Bitmap
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -245,6 +249,25 @@ bool MyModel::DrawGLScene(void)
 		glVertex3f(temp[i].x -0.03, temp[i].y+ 0.03, -5.0);
 		glEnd();
 		
+	}
+	std::vector<nemico> NMI = room.getNemici();
+	int s = NMI.size();
+	glBindTexture(GL_TEXTURE_2D, texture[1]);
+	for (int i = 0; i < NMI.size(); i++) {
+		
+		glBegin(GL_QUADS);
+		glTexCoord2f(0, 0);
+		glVertex3f(NMI[i].getPosx() - 0.05f, NMI[i].getPosy() - 0.05f, p.z);
+
+		glTexCoord2f(1, 0);
+		glVertex3f(NMI[i].getPosx() + 0.05f, NMI[i].getPosy() - 0.05f, p.z);
+
+		glTexCoord2f(1, 1);
+		glVertex3f(NMI[i].getPosx() + 0.05f, NMI[i].getPosy() + 0.05f, p.z);
+
+		glTexCoord2f(0, 1);
+		glVertex3f(NMI[i].getPosx() - 0.05f, NMI[i].getPosy() + 0.05f, p.z);
+		glEnd();
 	}
 	glDisable(GL_ALPHA_TEST);
 

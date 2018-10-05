@@ -4,8 +4,8 @@
 
 nemico::nemico()
 {
-	rivolto = 1;
-	moving = false;
+	posx = static_cast<double>(std::rand()) / RAND_MAX *1.30  - 1.30;
+	posy = static_cast<double>(std::rand()) / RAND_MAX - 1;
 }
 
 
@@ -13,12 +13,31 @@ nemico::~nemico()
 {
 }
 
-int nemico::getRivolto()
+void nemico::decidi()
 {
-	return rivolto;
 }
 
-bool nemico::isMoving()
+void nemico::setId(int id)
 {
-	return moving;
+	this->id = id;
 }
+
+int nemico::getId()
+{
+	return id;
+}
+
+float nemico::getPosx()
+{
+	return posx;;
+}
+
+float nemico::getPosy()
+{
+	return posy;
+}
+
+void nemico::move()
+{
+}
+

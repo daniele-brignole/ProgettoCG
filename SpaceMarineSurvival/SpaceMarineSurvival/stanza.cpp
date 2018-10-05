@@ -63,7 +63,9 @@ void stanza::addEnemy()
 
 nemico stanza::generaNemico()
 {
-	int newNumber = (rand() % (contaround)) + 1;
+	//int newNumber = (rand() % (contaround)) + 1;
+	int newNumber = static_cast<double>(std::rand()) / RAND_MAX * contaround + 1;
+	
 	switch (newNumber) {
 	case 1:
 		return cultista(1);
@@ -75,4 +77,17 @@ nemico stanza::generaNemico()
 		return posseduto(1);
 		break;
 	}
+}
+
+void stanza::gestisci()
+{
+	for (int i = 0; i < nemici.size(); i++) {
+		if (nemici[i].getId() == 0) {
+			nemici[i].decidi();
+		}
+		else nemici[i].move();
+	}
+}
+std::vector<nemico>& stanza::getNemici() {
+	return nemici;
 }

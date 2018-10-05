@@ -7,13 +7,15 @@ public:
 	cultista(int id);
 	~cultista();
 	void move();
-	
+	int getRivolto();
+	bool isMoving();
 	int getID();
 	
 private:
 	int id;
 	int pv;
 	float mov;
-	
+	int rivolto;
+	bool moving;
 };
 

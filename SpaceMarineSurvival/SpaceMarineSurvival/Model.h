@@ -77,8 +77,9 @@ private:
 	GLuint	base;				// Base Display List For The Font Set
 public:
 	//  methods
-	MyModel() : hDC(NULL), hRC(NULL), hWnd(NULL), active(true),
+	MyModel(stanza& context) : hDC(NULL), hRC(NULL), hWnd(NULL), active(true),
 		fullscreen(true), frames(0), fps(0) {
+		this->room = context;
 		float cellx = 2.0 / 6;
 		Background.clear();  //16 vertici
 		float x = -1.0f -(1.0f/3);
