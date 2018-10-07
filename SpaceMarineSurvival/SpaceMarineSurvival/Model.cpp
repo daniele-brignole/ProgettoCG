@@ -208,7 +208,7 @@ bool MyModel::DrawGLScene(void)
 	
 	
 	glBindTexture(GL_TEXTURE_2D, texture[9]);
-	std::vector<ostacolo> blocchi = room.getOstacoli();
+	std::vector<ostacolo> blocchi = room->getOstacoli();
 	for (int b = 0; b < blocchi.size(); b++) {
 		glBegin(GL_QUADS);
 
@@ -250,7 +250,7 @@ bool MyModel::DrawGLScene(void)
 		glEnd();
 		
 	}
-	std::vector<nemico> NMI = room.getNemici();
+	std::vector<nemico> NMI = room->getNemici();
 	int s = NMI.size();
 	glBindTexture(GL_TEXTURE_2D, texture[1]);
 	for (int i = 0; i < NMI.size(); i++) {
@@ -373,25 +373,25 @@ void MyModel::move(int dir)
 {
 	switch (dir) {
 	case 0:
-		if (room.isMovePossible(dir, p.y + 0.001f)) {
+		if (room->isMovePossible(dir, p.y + 0.001f)) {
 			p.y = p.y + 0.001f;
 			this->marine.setPosition(p.x, p.y);
 		}
 		break;
 	case 1:
-		if (room.isMovePossible(dir, p.x + 0.001f)) {
+		if (room->isMovePossible(dir, p.x + 0.001f)) {
 			p.x = p.x + 0.001f;
 			this->marine.setPosition(p.x, p.y);
 		}
 		break;
 	case 2:
-		if (room.isMovePossible(dir, p.y - 0.001f)) {
+		if (room->isMovePossible(dir, p.y - 0.001f)) {
 			p.y = p.y - 0.001f;
 			this->marine.setPosition(p.x, p.y);
 		}
 		break;
 	case 3:
-		if (room.isMovePossible(dir, p.x - 0.001f)) {
+		if (room->isMovePossible(dir, p.x - 0.001f)) {
 			p.x = p.x - 0.001f;
 			this->marine.setPosition(p.x, p.y);
 		}

@@ -15,6 +15,7 @@
 #pragma warning(disable: 4996)
 
 #include <vector>
+#include <stdio.h>
 #include <time.h>
 #include <math.h>
 #include "stanza.h"
@@ -66,7 +67,7 @@ private:
 	double fps;
 	Marine marine;
 	Vertex p;
-	stanza room;
+	stanza *room;
 	//  model data
 	std::vector<Vertex> Background;   // background
 	
@@ -77,9 +78,11 @@ private:
 	GLuint	base;				// Base Display List For The Font Set
 public:
 	//  methods
-	MyModel(stanza& context) : hDC(NULL), hRC(NULL), hWnd(NULL), active(true),
+	MyModel(stanza* context) : hDC(NULL), hRC(NULL), hWnd(NULL), active(true),
 		fullscreen(true), frames(0), fps(0) {
-		this->room = context;
+		room = context;
+		//stanza*indirizzo = &room;
+		
 		float cellx = 2.0 / 6;
 		Background.clear();  //16 vertici
 		float x = -1.0f -(1.0f/3);

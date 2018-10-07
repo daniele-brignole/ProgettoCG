@@ -8,7 +8,7 @@
 #include <stdio.h>			// Header File For Standard Input/Output
 #include <gl\gl.h>			// Header File For The OpenGL32 Library
 #include <gl\glu.h>			// Header File For The GLu32 Library
-#include<iostream>
+#include <random>
 #include<string>
 
 struct ostacolo {
@@ -27,6 +27,7 @@ public:
 	void gestisci();
 	std::vector<nemico> & getNemici();
 private:
+
 	int lunghezza, altezza;
 	int contaround;
 	int contanemici;

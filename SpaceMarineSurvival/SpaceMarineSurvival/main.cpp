@@ -51,11 +51,10 @@ using namespace std;
 //#pragma comment( lib, "winmm.lib" )						// Search For WinMM Library While Linking
 
 stanza room;
-class MyModel Data(room);
+stanza* r = &room;
+class MyModel Data(r);
 int temp;
-GLdouble  model[16];
-GLdouble Proj[16];
-GLint view[4];
+
 LRESULT	CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);	// Declaration For WndProc
 
 														///////////////////////////////////////////////////////////
@@ -356,6 +355,7 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 														// Init of the default button depending on Data.fullscreen
 	unsigned long Def = MB_DEFBUTTON1;
 	if (!Data.fullscreen) Def = MB_DEFBUTTON2;
+	stanza* indirizzo = r;
 	
 	Data.fullscreen = false;  // removed the boring request...
 
@@ -401,6 +401,7 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 		}
 		else										// If There Are No Messages
 		{
+			
 			room.addEnemy();
 			room.gestisci();
 			// Draw The Scene.  Watch For ESC Key And Quit Messages From DrawGLScene()
