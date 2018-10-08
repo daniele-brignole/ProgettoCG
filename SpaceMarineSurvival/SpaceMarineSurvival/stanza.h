@@ -1,8 +1,9 @@
 #pragma once
-#include "nemico.h"
+
 #include "cultista.h"
-#include "chmarine.h"
+#include"chmarine.h"
 #include "posseduto.h"
+
 #include <vector>
 #include <windows.h>		// Header File For Windows
 #include <stdio.h>			// Header File For Standard Input/Output
@@ -11,16 +12,20 @@
 #include <random>
 #include<string>
 
+
+class nemico;
 struct ostacolo {
 	float x;
 	float y;
 };
+
+
 class stanza
 {
 public:
 	stanza();
-	bool isMovePossible(int dir,float nextpos);
-	bool checkCollision(float x, float y);
+	bool isMovePossible(int dir,float nextpos,float now);
+	bool checkCollision(float x, float y,double hitbox);
 	std::vector<ostacolo>& getOstacoli();
 	void addEnemy();
 	nemico generaNemico();
@@ -37,4 +42,3 @@ private:
 	std::vector<ostacolo> ostacoli;
 	std::vector<nemico> nemici;
 };
-

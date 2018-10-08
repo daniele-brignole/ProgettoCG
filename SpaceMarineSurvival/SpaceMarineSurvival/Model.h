@@ -25,7 +25,10 @@
 using std::vector;
 // A class for storing vetices
 //  Vertex
+//class stanza;
+//class nemico;
 class Vertex {
+	
 public:
 
 	float x, y, z;     // 3d coordinate of the vertex

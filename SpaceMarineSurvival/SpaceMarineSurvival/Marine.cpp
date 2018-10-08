@@ -73,26 +73,25 @@ vector<shot>& Marine::getOnScreenShoot()
 }
 
 void Marine::incrementshot() {
-	//vector<shot>::iterator itr = onScreenShoot.begin();
 	int dir;
 	for (int i = 0; i < onScreenShoot.size(); i++) {
 		dir = onScreenShoot[i].dir;
 		switch (dir) {
 		case 0:
 			onScreenShoot[i].y += 0.01;
-			if (onScreenShoot[i].y > 1 || stz.checkCollision(onScreenShoot[i].x, onScreenShoot[i].y))  onScreenShoot.erase(onScreenShoot.begin() + i);
+			if (onScreenShoot[i].y > 1 || stz.checkCollision(onScreenShoot[i].x, onScreenShoot[i].y,0))  onScreenShoot.erase(onScreenShoot.begin() + i);
 			break;
 		case 1:
 			onScreenShoot[i].x += 0.01;
-			if (onScreenShoot[i].x > 1.30 || stz.checkCollision(onScreenShoot[i].x, onScreenShoot[i].y))  onScreenShoot.erase(onScreenShoot.begin() + i);
+			if (onScreenShoot[i].x > 1.30 || stz.checkCollision(onScreenShoot[i].x, onScreenShoot[i].y,0))  onScreenShoot.erase(onScreenShoot.begin() + i);
 			break;
 		case 2:
 			onScreenShoot[i].y -= 0.01;
-			if (onScreenShoot[i].y < -1.0 || stz.checkCollision(onScreenShoot[i].x, onScreenShoot[i].y))  onScreenShoot.erase(onScreenShoot.begin() + i);
+			if (onScreenShoot[i].y < -1.0 || stz.checkCollision(onScreenShoot[i].x, onScreenShoot[i].y,0))  onScreenShoot.erase(onScreenShoot.begin() + i);
 			break;
 		case 3:
 			onScreenShoot[i].x -= 0.01;
-			if (onScreenShoot[i].x < -1.30 || stz.checkCollision(onScreenShoot[i].x, onScreenShoot[i].y))  onScreenShoot.erase(onScreenShoot.begin() + i);
+			if (onScreenShoot[i].x < -1.30 || stz.checkCollision(onScreenShoot[i].x, onScreenShoot[i].y,0))  onScreenShoot.erase(onScreenShoot.begin() + i);
 			break;
 			
 		}

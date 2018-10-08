@@ -2,16 +2,14 @@
 
 
 
-cultista::cultista()
-{
-	
-}
 
-cultista::cultista(int id)
+
+cultista::cultista(int id,stanza* s):nemico(s)
 {
 	this->id = id;
 	pv = 3;
 	mov = 0.008;
+	setMov(mov);
 	moving = false;
 	rivolto = 1;
 	setId(0);

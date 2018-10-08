@@ -1,6 +1,7 @@
 #pragma once
-#include "stanza.h"
+
 #include <vector>
+#include"stanza.h"
 
 using std::vector;
 struct shot {

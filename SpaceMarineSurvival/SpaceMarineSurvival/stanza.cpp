@@ -22,29 +22,29 @@ stanza::stanza()
 
 
 
-bool stanza::isMovePossible(int dir,float nextpos)
+bool stanza::isMovePossible(int dir,float nextpos,float now)
 {
 	switch (dir) {
 	case 0:
-		if (nextpos > top-0.05f) return false;
+		if (nextpos > top-0.05f || checkCollision(now,nextpos,0.05)) return false;
 		break;
 	case 1:
-		if (nextpos > right-0.05f) return false;
+		if (nextpos > right-0.05f || checkCollision(nextpos,now,0.05)) return false;
 		break;
 	case 2:
-		if (nextpos < bot+0.05f) return false;
+		if (nextpos < bot+0.05f || checkCollision(now,nextpos,0.05)) return false;
 		break;
 	case 3:
-		if (nextpos < left+0.05f) return false;
+		if (nextpos < left+0.05f || checkCollision(nextpos,now,0.05)) return false;
 		break;
 	}
 	return true;
 }
 
-bool stanza::checkCollision(float x, float y)
+bool stanza::checkCollision(float x, float y,double hitbox)
 {
 	for (int i = 0; i < ostacoli.size(); i++) {
-		if (x > ostacoli[i].x - 0.1 && x < ostacoli[i].x + 0.1 && y > ostacoli[i].y - 0.1&& y < ostacoli[i].y + 0.1) return true;
+		if (x + hitbox > ostacoli[i].x - 0.1 && x - hitbox < ostacoli[i].x + 0.1 && y + hitbox > ostacoli[i].y - 0.1&& y - hitbox < ostacoli[i].y + 0.1) return true;
 	}
 	return false;
 }
@@ -54,7 +54,7 @@ std::vector<ostacolo>& stanza::getOstacoli() {
 
 void stanza::addEnemy()
 {
-	if (contanemici < 5) {
+	if (contanemici < 10) {
 		contanemici++;
 		nemico n = generaNemico();
 		nemici.push_back(n);
@@ -63,21 +63,19 @@ void stanza::addEnemy()
 
 nemico stanza::generaNemico()
 {
-	//int newNumber = (rand() % (contaround)) + 1;
-	//int newNumber = static_cast<double>(std::rand()) / RAND_MAX * contaround + 1;
-	std::random_device rd; // obtain a random number from hardware
-	std::mt19937 eng(rd()); // seed the generator
+	std::random_device rd; 
+	std::mt19937 eng(rd()); 
 	std::uniform_int_distribution<> distr(1, contaround);
 	int newNumber = distr(eng);
 	switch (newNumber) {
 	case 1:
-		return cultista(1);
+		return cultista(1,this);
 		break;
 	case 2:
-		return chmarine(1);
+		return chmarine(1,this);
 		break;
 	case 3:
-		return posseduto(1);
+		return posseduto(1,this);
 		break;
 	}
 }
@@ -88,7 +86,7 @@ void stanza::gestisci()
 		if (nemici[i].getId() == 0) {
 			nemici[i].decidi();
 		}
-		else nemici[i].move();
+		else nemici[i].moveClose();
 	}
 }
 

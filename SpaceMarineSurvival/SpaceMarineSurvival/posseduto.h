@@ -1,10 +1,14 @@
 #pragma once
+
+
 #include "nemico.h"
+
+
 class posseduto :
 	public nemico
 {
 public:
-	posseduto(int id);
+	posseduto(int id,stanza* s);
 	~posseduto();
 	int getRivolto();
 	bool isMoving();

@@ -1,10 +1,13 @@
 #pragma once
+//#include"stanza.h"
+
 #include "nemico.h"
+
 class cultista: public nemico
 {
 public:
 	cultista();
-	cultista(int id);
+	cultista(int id,stanza* s);
 	~cultista();
 	void move();
 	int getRivolto();
@@ -18,4 +21,5 @@ private:
 	int rivolto;
 	bool moving;
 };
+
 

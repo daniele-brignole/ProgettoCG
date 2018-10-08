@@ -10,7 +10,7 @@
 #include <gl\glu.h>			// Header File For The GLu32 Library
 #include <vector>
 #include "Model.h"
-#include "Stanza.h"
+
 #include "SOIL.h"
 
 
@@ -373,25 +373,25 @@ void MyModel::move(int dir)
 {
 	switch (dir) {
 	case 0:
-		if (room->isMovePossible(dir, p.y + 0.001f)) {
+		if (room->isMovePossible(dir, p.y + 0.001f,p.x)) {
 			p.y = p.y + 0.001f;
 			this->marine.setPosition(p.x, p.y);
 		}
 		break;
 	case 1:
-		if (room->isMovePossible(dir, p.x + 0.001f)) {
+		if (room->isMovePossible(dir, p.x + 0.001f,p.y)) {
 			p.x = p.x + 0.001f;
 			this->marine.setPosition(p.x, p.y);
 		}
 		break;
 	case 2:
-		if (room->isMovePossible(dir, p.y - 0.001f)) {
+		if (room->isMovePossible(dir, p.y - 0.001f,p.x)) {
 			p.y = p.y - 0.001f;
 			this->marine.setPosition(p.x, p.y);
 		}
 		break;
 	case 3:
-		if (room->isMovePossible(dir, p.x - 0.001f)) {
+		if (room->isMovePossible(dir, p.x - 0.001f,p.y)) {
 			p.x = p.x - 0.001f;
 			this->marine.setPosition(p.x, p.y);
 		}

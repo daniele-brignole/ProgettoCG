@@ -1,7 +1,6 @@
-﻿  nemico.cpp
-SOIL.lib(image_DXT.obj) : warning LNK4099: impossibile trovare il PDB 'vc100.pdb' con 'SOIL.lib(image_DXT.obj)' o in 'C:\Users\Daniele\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\vc100.pdb'; oggetto collegato senza informazioni di debug
-SOIL.lib(image_helper.obj) : warning LNK4099: impossibile trovare il PDB 'vc100.pdb' con 'SOIL.lib(image_helper.obj)' o in 'C:\Users\Daniele\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\vc100.pdb'; oggetto collegato senza informazioni di debug
-SOIL.lib(SOIL.obj) : warning LNK4099: impossibile trovare il PDB 'vc100.pdb' con 'SOIL.lib(SOIL.obj)' o in 'C:\Users\Daniele\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\vc100.pdb'; oggetto collegato senza informazioni di debug
-SOIL.lib(stb_image_aug.obj) : warning LNK4099: impossibile trovare il PDB 'vc100.pdb' con 'SOIL.lib(stb_image_aug.obj)' o in 'C:\Users\Daniele\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\vc100.pdb'; oggetto collegato senza informazioni di debug
-  SpaceMarineSurvival.vcxproj -> C:\Users\Daniele\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.exe
-  SpaceMarineSurvival.vcxproj -> C:\Users\Daniele\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.pdb (Partial PDB)
+﻿  stanza.cpp
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\stanza.cpp(46): warning C4018: '<': errata corrispondenza tra signed e unsigned
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\stanza.cpp(85): warning C4018: '<': errata corrispondenza tra signed e unsigned
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\stanza.cpp(81): warning C4715: 'stanza::generaNemico': non tutti i percorsi di controllo restituiscono un valore
+  SpaceMarineSurvival.vcxproj -> C:\Users\Tiziana\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.exe
+  SpaceMarineSurvival.vcxproj -> C:\Users\Tiziana\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.pdb (Partial PDB)

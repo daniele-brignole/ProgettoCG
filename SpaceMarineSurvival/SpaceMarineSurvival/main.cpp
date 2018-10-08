@@ -37,8 +37,9 @@
 #include <gl\glu.h>			// Header File For The GLu32 Library
 #include<iostream>
 #include<string>
-#include "stanza.h"
 #include "Model.h"
+#include "stanza.h"
+
 
 #include "audiere.h"
 #include"SOIL.h"
