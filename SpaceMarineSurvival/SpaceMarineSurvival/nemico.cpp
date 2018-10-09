@@ -10,10 +10,10 @@ nemico::nemico(stanza* stz)
 	std::mt19937 eng(rd()); // seed the generator
 	std::uniform_real_distribution<> distrx(-1.30, 1.30);
 	posx = (float) distrx(eng);
-		//static_cast<double>(std::rand()) / RAND_MAX *1.30  - 1.30;
+		
 	std::uniform_real_distribution<> distry(-1, 1);
 	posy = (float) distry(eng);
-		//static_cast<double>(std::rand()) / RAND_MAX - 1;
+		
 }
 
 
@@ -27,9 +27,15 @@ void nemico::decidi()
 	std::mt19937 eng(rd());
 	std::uniform_int_distribution<> distr(0,100);
 	int decisionNumber = distr(eng);
-
-	if (decisionNumber < 50) move();
-	else;
+	
+	if (decisionNumber < 60) { move(); wait--;}
+	else {
+		if (wait <= 0) {
+			spara();
+			wait = 10;
+		}
+	}
+	
 }
 
 void nemico::setId(int id)
@@ -60,7 +66,7 @@ void nemico::move()
 		std::mt19937 eng(rd());
 		std::uniform_int_distribution<> distr(0, 3);
 		direction = distr(eng);
-		conta = 20;
+		conta = 30;
 	}
 
 	
@@ -89,6 +95,16 @@ void nemico::move()
 			}
 			break;
 		}
+}
+
+void nemico::spara()
+{
+	E_shot shot;
+	shot.aimx = stz->getMarx();
+	shot.aimy = stz->getMary();
+	shot.nowx = posx;
+	shot.nowy = posy;
+	stz->addShot(shot);
 }
 
 void nemico::moveClose()

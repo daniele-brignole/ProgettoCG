@@ -54,7 +54,7 @@ std::vector<ostacolo>& stanza::getOstacoli() {
 
 void stanza::addEnemy()
 {
-	if (contanemici < 10) {
+	if (contanemici < 7) {
 		contanemici++;
 		nemico n = generaNemico();
 		nemici.push_back(n);
@@ -92,4 +92,48 @@ void stanza::gestisci()
 
 std::vector<nemico>& stanza::getNemici() {
 	return nemici;
+}
+
+void stanza::setMarx(double x)
+{
+	marx = x;
+}
+
+void stanza::setMary(double y)
+{
+	mary = y;
+}
+
+double stanza::getMarx()
+{
+	return marx;
+}
+
+double stanza::getMary()
+{
+	return mary;
+}
+
+void stanza::addShot(E_shot e)
+{
+	colpi.push_back(e);
+}
+
+E_shot& stanza::updateShots(int i)
+{
+	double temp = colpi[i].nowx+1;
+	colpi[i].nowy = (temp - colpi[i].aimx)*(colpi[i].nowy - colpi[i].aimy) / (colpi[i].nowx - colpi[i].aimx) + colpi[i].aimy;
+	colpi[i].nowx = temp;
+	if (temp < -1.30 || temp >1.30 || colpi[i].nowy < -1 || colpi[i].nowy > 1) colpi[i].erase = true;
+	return colpi[i];
+}
+
+int stanza::getShotSize()
+{
+	return colpi.size();
+}
+
+void stanza::eraseShot(int i)
+{
+	colpi.erase(colpi.begin() + i);
 }

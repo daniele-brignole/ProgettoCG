@@ -14,6 +14,13 @@
 
 
 class nemico;
+struct E_shot {
+	double aimx;
+	double aimy;
+	double nowx;
+	double nowy;
+	bool erase = false;
+};
 struct ostacolo {
 	float x;
 	float y;
@@ -31,6 +38,12 @@ public:
 	nemico generaNemico();
 	void gestisci();
 	std::vector<nemico> & getNemici();
+	void setMarx(double x);	void setMary(double y);
+	double getMarx(); double getMary();
+	void addShot(E_shot e);
+	E_shot& updateShots(int i);
+	int getShotSize();
+	void eraseShot(int i);
 private:
 
 	int lunghezza, altezza;
@@ -41,4 +54,6 @@ private:
 	ostacolo ostacolo2;
 	std::vector<ostacolo> ostacoli;
 	std::vector<nemico> nemici;
+	std::vector<E_shot> colpi;
+	double marx, mary;
 };

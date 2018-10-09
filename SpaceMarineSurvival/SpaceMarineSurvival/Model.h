@@ -18,7 +18,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <math.h>
-#include "stanza.h"
+
 #include"Marine.h"
 
 #define PI 3.141592654
@@ -27,6 +27,7 @@ using std::vector;
 //  Vertex
 //class stanza;
 //class nemico;
+class stanza;
 class Vertex {
 	
 public:

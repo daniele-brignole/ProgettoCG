@@ -10,7 +10,7 @@
 #include <gl\glu.h>			// Header File For The GLu32 Library
 #include <vector>
 #include "Model.h"
-
+#include "stanza.h"
 #include "SOIL.h"
 
 
@@ -225,33 +225,54 @@ bool MyModel::DrawGLScene(void)
 		glVertex3f(blocchi[b].x - 0.1, blocchi[b].y + 0.1, -5.0);
 		glEnd();
 	}
+	
 	this->marine.incrementshot();
 	vector<shot> temp = this->marine.getOnScreenShoot();
-	
-	
-	for (int i = 0; i < temp.size(); i++) {
-		
-		glBindTexture(GL_TEXTURE_2D, texture[rivolto +4]);
-		
-		
-		glBegin(GL_QUADS);
+	E_shot e;
+	int s = max(temp.size(), room->getShotSize());
+	for (int i = 0; i < s; i++) {
+		if (s < temp.size()) {
+			glBindTexture(GL_TEXTURE_2D, texture[rivolto + 4]);
 
-		glTexCoord2f(0.0, 0.0);
-		glVertex3f(temp[i].x-0.03, temp[i].y -0.03, -5.0);
 
-		glTexCoord2f(1.0, 0.0);
-		glVertex3f(temp[i].x + 0.03, temp[i].y - 0.03, -5.0);
+			glBegin(GL_QUADS);
 
-		glTexCoord2f(1.0, 1.0);
-		glVertex3f(temp[i].x+0.03, temp[i].y+ 0.03, -5.0);
+			glTexCoord2f(0.0, 0.0);
+			glVertex3f(temp[i].x - 0.03, temp[i].y - 0.03, -5.0);
 
-		glTexCoord2f(0.0, 1.0);
-		glVertex3f(temp[i].x -0.03, temp[i].y+ 0.03, -5.0);
-		glEnd();
-		
+			glTexCoord2f(1.0, 0.0);
+			glVertex3f(temp[i].x + 0.03, temp[i].y - 0.03, -5.0);
+
+			glTexCoord2f(1.0, 1.0);
+			glVertex3f(temp[i].x + 0.03, temp[i].y + 0.03, -5.0);
+
+			glTexCoord2f(0.0, 1.0);
+			glVertex3f(temp[i].x - 0.03, temp[i].y + 0.03, -5.0);
+			glEnd();
+		}
+		if (s <= room->getShotSize()) {
+			glBindTexture(GL_TEXTURE_2D, texture[6]);
+			e = room->updateShots(i);
+			
+			glBindTexture(GL_TEXTURE_2D, texture[6]);
+			glBegin(GL_QUADS);
+			glTexCoord2f(0, 0);
+			glVertex3f(e.nowx - 0.01f, e.nowy - 0.03f, -5);
+
+			glTexCoord2f(1, 0);
+			glVertex3f(e.nowx + 0.01f, e.nowy - 0.03f, p.z);
+
+			glTexCoord2f(1, 1);
+			glVertex3f(e.nowx + 0.01f, e.nowy + 0.03f, p.z);
+
+			glTexCoord2f(0, 1);
+			glVertex3f(e.nowx - 0.01f, e.nowy + 0.03f, p.z);
+			glEnd();
+			if (e.erase) room->eraseShot(i);
+		}
 	}
 	std::vector<nemico> NMI = room->getNemici();
-	int s = NMI.size();
+	
 	glBindTexture(GL_TEXTURE_2D, texture[1]);
 	for (int i = 0; i < NMI.size(); i++) {
 		
@@ -269,6 +290,8 @@ bool MyModel::DrawGLScene(void)
 		glVertex3f(NMI[i].getPosx() - 0.05f, NMI[i].getPosy() + 0.05f, p.z);
 		glEnd();
 	}
+	
+	
 	glDisable(GL_ALPHA_TEST);
 
 	// Reset The Current Modelview Matrix
@@ -376,24 +399,32 @@ void MyModel::move(int dir)
 		if (room->isMovePossible(dir, p.y + 0.001f,p.x)) {
 			p.y = p.y + 0.001f;
 			this->marine.setPosition(p.x, p.y);
+			this->room->setMarx(p.x);
+			this->room->setMary(p.y);
 		}
 		break;
 	case 1:
 		if (room->isMovePossible(dir, p.x + 0.001f,p.y)) {
 			p.x = p.x + 0.001f;
 			this->marine.setPosition(p.x, p.y);
+			this->room->setMarx(p.x);
+			this->room->setMary(p.y);
 		}
 		break;
 	case 2:
 		if (room->isMovePossible(dir, p.y - 0.001f,p.x)) {
 			p.y = p.y - 0.001f;
 			this->marine.setPosition(p.x, p.y);
+			this->room->setMarx(p.x);
+			this->room->setMary(p.y);
 		}
 		break;
 	case 3:
 		if (room->isMovePossible(dir, p.x - 0.001f,p.y)) {
 			p.x = p.x - 0.001f;
 			this->marine.setPosition(p.x, p.y);
+			this->room->setMarx(p.x);
+			this->room->setMary(p.y);
 		}
 		break;
 	}

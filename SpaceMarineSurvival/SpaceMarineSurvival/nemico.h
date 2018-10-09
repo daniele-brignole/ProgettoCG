@@ -28,5 +28,6 @@ private:
 	float posx, posy;
 	float mov;
 	stanza* stz;
+	int wait = 10;
 };
 
