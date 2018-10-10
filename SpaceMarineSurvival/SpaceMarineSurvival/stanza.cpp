@@ -121,10 +121,12 @@ void stanza::addShot(E_shot e)
 
 E_shot& stanza::updateShots(int i)
 {
-	double temp = colpi[i].nowx+1;
+	double temp;
+	if (colpi[i].dir == 0) temp = colpi[i].nowx - 0.01;
+	else temp = colpi[i].nowx + 0.01;
 	colpi[i].nowy = (temp - colpi[i].aimx)*(colpi[i].nowy - colpi[i].aimy) / (colpi[i].nowx - colpi[i].aimx) + colpi[i].aimy;
 	colpi[i].nowx = temp;
-	if (temp < -1.30 || temp >1.30 || colpi[i].nowy < -1 || colpi[i].nowy > 1) colpi[i].erase = true;
+	if (temp < -1.30 || temp >1.30 || colpi[i].nowy < -1 || colpi[i].nowy > 1|| checkCollision(colpi[i].nowx,colpi[i].nowy,0.0)) colpi[i].erase = true;
 	return colpi[i];
 }
 
@@ -136,4 +138,18 @@ int stanza::getShotSize()
 void stanza::eraseShot(int i)
 {
 	colpi.erase(colpi.begin() + i);
+}
+
+bool stanza::checkEnemyCollision(float x, float y, double hitbox)
+{
+	for (int i = 0; i < nemici.size(); i++) {
+		if (x + hitbox > nemici[i].getPosx() - 0.05 && x - hitbox < nemici[i].getPosx() + 0.05 && y + hitbox > nemici[i].getPosy() - 0.05&& y - hitbox < nemici[i].getPosy() + 0.05) {
+			if (nemici[i].damage()) {
+				nemici.erase(nemici.begin() + i);
+				contanemici--;
+			}
+			return true;
+		}
+	}
+	return false;
 }

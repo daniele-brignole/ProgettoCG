@@ -85,6 +85,7 @@ public:
 	MyModel(stanza* context) : hDC(NULL), hRC(NULL), hWnd(NULL), active(true),
 		fullscreen(true), frames(0), fps(0) {
 		room = context;
+		marine = Marine(room);
 		//stanza*indirizzo = &room;
 		
 		float cellx = 2.0 / 6;

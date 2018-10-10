@@ -4,7 +4,7 @@
 
 
 
-cultista::cultista(int id,stanza* s):nemico(s)
+cultista::cultista(int id,stanza* s):nemico(s,3)
 {
 	this->id = id;
 	pv = 3;

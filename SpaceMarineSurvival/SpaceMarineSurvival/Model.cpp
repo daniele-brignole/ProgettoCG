@@ -231,7 +231,7 @@ bool MyModel::DrawGLScene(void)
 	E_shot e;
 	int s = max(temp.size(), room->getShotSize());
 	for (int i = 0; i < s; i++) {
-		if (s < temp.size()) {
+		if (i < temp.size()) {
 			glBindTexture(GL_TEXTURE_2D, texture[rivolto + 4]);
 
 
@@ -250,23 +250,23 @@ bool MyModel::DrawGLScene(void)
 			glVertex3f(temp[i].x - 0.03, temp[i].y + 0.03, -5.0);
 			glEnd();
 		}
-		if (s <= room->getShotSize()) {
+		if (i < room->getShotSize()) {
 			glBindTexture(GL_TEXTURE_2D, texture[6]);
 			e = room->updateShots(i);
 			
 			glBindTexture(GL_TEXTURE_2D, texture[6]);
 			glBegin(GL_QUADS);
 			glTexCoord2f(0, 0);
-			glVertex3f(e.nowx - 0.01f, e.nowy - 0.03f, -5);
+			glVertex3f(e.nowx - 0.03f, e.nowy - 0.03f, -5);
 
 			glTexCoord2f(1, 0);
-			glVertex3f(e.nowx + 0.01f, e.nowy - 0.03f, p.z);
+			glVertex3f(e.nowx + 0.03f, e.nowy - 0.03f, p.z);
 
 			glTexCoord2f(1, 1);
-			glVertex3f(e.nowx + 0.01f, e.nowy + 0.03f, p.z);
+			glVertex3f(e.nowx + 0.03f, e.nowy + 0.03f, p.z);
 
 			glTexCoord2f(0, 1);
-			glVertex3f(e.nowx - 0.01f, e.nowy + 0.03f, p.z);
+			glVertex3f(e.nowx - 0.03f, e.nowy + 0.03f, p.z);
 			glEnd();
 			if (e.erase) room->eraseShot(i);
 		}

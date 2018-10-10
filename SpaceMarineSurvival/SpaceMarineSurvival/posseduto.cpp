@@ -2,7 +2,7 @@
 
 
 
-posseduto::posseduto(int id,stanza* s):nemico(s)
+posseduto::posseduto(int id,stanza* s):nemico(s,10)
 {
 	pv = 10;
 	this->id = id;

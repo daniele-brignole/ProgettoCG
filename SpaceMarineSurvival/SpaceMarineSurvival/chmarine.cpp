@@ -2,7 +2,7 @@
 
 
 
-chmarine::chmarine(int id,stanza* s) :nemico(s)
+chmarine::chmarine(int id,stanza* s) :nemico(s,6)
 {
 	pv = 6;
 	this->id = id;

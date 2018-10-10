@@ -13,7 +13,9 @@ struct shot {
 class Marine
 {
 public:
-	Marine() {
+	Marine();
+	Marine(stanza* stz) {
+		this->stz = stz;
 		pv = 100;
 		ammo = 200;
 		rivolto = 1;
@@ -39,7 +41,7 @@ private:
 	int ammo;
 	bool isShooting;
 	vector<shot> onScreenShoot;
-	stanza stz;
+	stanza* stz;
 	float posx;
 	float posy;
 	int rivolto;

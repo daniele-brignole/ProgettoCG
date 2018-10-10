@@ -20,6 +20,7 @@ struct E_shot {
 	double nowx;
 	double nowy;
 	bool erase = false;
+	int dir;
 };
 struct ostacolo {
 	float x;
@@ -44,6 +45,7 @@ public:
 	E_shot& updateShots(int i);
 	int getShotSize();
 	void eraseShot(int i);
+	bool checkEnemyCollision(float x, float y, double hitbox);
 private:
 
 	int lunghezza, altezza;

@@ -2,10 +2,11 @@
 #include "stanza.h"
 
 
-nemico::nemico(stanza* stz)
+nemico::nemico(stanza* stz,int pv)
 {
 	conta = 0;
 	this->stz = stz;
+	this->pv = pv;
 	std::random_device rd; // obtain a random number from hardware
 	std::mt19937 eng(rd()); // seed the generator
 	std::uniform_real_distribution<> distrx(-1.30, 1.30);
@@ -27,12 +28,16 @@ void nemico::decidi()
 	std::mt19937 eng(rd());
 	std::uniform_int_distribution<> distr(0,100);
 	int decisionNumber = distr(eng);
-	
-	if (decisionNumber < 60) { move(); wait--;}
+	now = clock();
+	if (remain < 0 || last > 0) {
+		remain = (double)(now - last) / (double)CLOCKS_PER_SEC;
+	}
+	if (decisionNumber < 60) move();
 	else {
-		if (wait <= 0) {
+		if (remain >= 1.5) {
+			last = clock();
 			spara();
-			wait = 10;
+			remain = -1;
 		}
 	}
 	
@@ -104,6 +109,8 @@ void nemico::spara()
 	shot.aimy = stz->getMary();
 	shot.nowx = posx;
 	shot.nowy = posy;
+	if (shot.aimx <= shot.nowx) shot.dir = 0;
+	else shot.dir = 1;
 	stz->addShot(shot);
 }
 
@@ -113,6 +120,13 @@ void nemico::moveClose()
 }
 void nemico::setMov(float mov) {
 	this->mov = mov;
+}
+
+bool nemico::damage()
+{
+	this->pv = this->pv - 2;
+	if (this->pv <= 0) return true;
+	else return false;
 }
 
 

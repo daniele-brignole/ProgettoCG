@@ -440,7 +440,7 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 			last = clock();
 			Data.getMarine().setRivolto(2);
 			Data.getMarine().spara(1);
-			remain = - 1;
+			remain = 1;
 			
 		}
 		if (Data.keys[VK_LEFT] && remain >= 0.5) {
