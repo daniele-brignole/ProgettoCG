@@ -39,6 +39,7 @@ public:
 private:
 	int pv;
 	int ammo;
+	bool gameover=false;
 	bool isShooting;
 	vector<shot> onScreenShoot;
 	stanza* stz;

@@ -83,7 +83,7 @@ nemico stanza::generaNemico()
 void stanza::gestisci()
 {
 	for (int i = 0; i < nemici.size(); i++) {
-		if (nemici[i].getId() == 0) {
+		if (nemici[i].getId() == 0 || nemici[i].getId() == 2) {
 			nemici[i].decidi();
 		}
 		else nemici[i].moveClose();
@@ -121,13 +121,34 @@ void stanza::addShot(E_shot e)
 
 E_shot& stanza::updateShots(int i)
 {
-	double temp;
-	if (colpi[i].dir == 0) temp = colpi[i].nowx - 0.01;
-	else temp = colpi[i].nowx + 0.01;
-	colpi[i].nowy = (temp - colpi[i].aimx)*(colpi[i].nowy - colpi[i].aimy) / (colpi[i].nowx - colpi[i].aimx) + colpi[i].aimy;
-	colpi[i].nowx = temp;
-	if (temp < -1.30 || temp >1.30 || colpi[i].nowy < -1 || colpi[i].nowy > 1|| checkCollision(colpi[i].nowx,colpi[i].nowy,0.0)) colpi[i].erase = true;
-	return colpi[i];
+	if (colpi[i].speed == 0) {
+		double temp;
+		if (colpi[i].dir == 0) temp = colpi[i].nowx - 0.005;
+		else temp = colpi[i].nowx + 0.005;
+		colpi[i].nowy = (temp - colpi[i].aimx)*(colpi[i].nowy - colpi[i].aimy) / (colpi[i].nowx - colpi[i].aimx) + colpi[i].aimy;
+		colpi[i].nowx = temp;
+		if (temp < -1.30 || temp >1.30 || colpi[i].nowy < -1 ||
+			colpi[i].nowy > 1 || checkCollision(colpi[i].nowx, colpi[i].nowy, 0.03) ||
+			checkMarineCollision(colpi[i].nowx, colpi[i].nowy, 0.03))
+		{
+			colpi[i].erase = true;
+		}
+		return colpi[i];
+	}
+	else if (colpi[i].speed == 1) {
+		double temp;
+		if (colpi[i].dir == 0) temp = colpi[i].nowy + 0.005;
+		else temp = colpi[i].nowy - 0.005;
+		colpi[i].nowx = (temp - colpi[i].aimy)*(colpi[i].nowx - colpi[i].aimx) / (colpi[i].nowy - colpi[i].aimy) + colpi[i].aimx;
+		colpi[i].nowy = temp;
+		if (temp < -1.30 || temp >1.30 || colpi[i].nowy < -1 ||
+			colpi[i].nowy > 1 || checkCollision(colpi[i].nowx, colpi[i].nowy, 0.03) ||
+			checkMarineCollision(colpi[i].nowx, colpi[i].nowy, 0.03))
+		{
+			colpi[i].erase = true;
+		}
+		return colpi[i];
+	}
 }
 
 int stanza::getShotSize()
@@ -143,13 +164,25 @@ void stanza::eraseShot(int i)
 bool stanza::checkEnemyCollision(float x, float y, double hitbox)
 {
 	for (int i = 0; i < nemici.size(); i++) {
-		if (x + hitbox > nemici[i].getPosx() - 0.05 && x - hitbox < nemici[i].getPosx() + 0.05 && y + hitbox > nemici[i].getPosy() - 0.05&& y - hitbox < nemici[i].getPosy() + 0.05) {
+		if (x + hitbox > nemici[i].getPosx() - 0.05 && 
+			x - hitbox < nemici[i].getPosx() + 0.05 && 
+			y + hitbox > nemici[i].getPosy() - 0.05 && 
+			y - hitbox < nemici[i].getPosy() + 0.05) {
 			if (nemici[i].damage()) {
 				nemici.erase(nemici.begin() + i);
 				contanemici--;
+				wave[contaround]--;
+				if (wave[contaround-1] == 0 && contaround <4) contaround++;
 			}
 			return true;
 		}
 	}
 	return false;
+}
+bool stanza::checkMarineCollision(double x, double y, double hitbox) {
+	if (x + hitbox > marx - 0.05 &&
+		x - hitbox < marx + 0.05 &&
+		y + hitbox > mary - 0.05 &&
+		y - hitbox < mary + 0.05) return true;
+	else return false;
 }

@@ -17,6 +17,7 @@ public:
 	void setId(int id);
 	int getId();
 	int conta;
+	int getVerso();
 	int direction;
 	float getPosx();
 	float getPosy();
@@ -27,6 +28,8 @@ public:
 	bool damage();
 private:
 	int id;
+	
+	int verso = 10;
 	float posx, posy;
 	float mov;
 	stanza* stz;

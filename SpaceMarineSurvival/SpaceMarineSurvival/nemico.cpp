@@ -53,6 +53,11 @@ int nemico::getId()
 	return id;
 }
 
+int nemico::getVerso()
+{
+	return verso;
+}
+
 float nemico::getPosx()
 {
 	return posx;;
@@ -109,9 +114,20 @@ void nemico::spara()
 	shot.aimy = stz->getMary();
 	shot.nowx = posx;
 	shot.nowy = posy;
-	if (shot.aimx <= shot.nowx) shot.dir = 0;
-	else shot.dir = 1;
+	if (shot.aimx >= shot.nowx) verso = 11;
+	else verso = 10;
+	if (abs(shot.nowx - shot.aimx) >= abs(shot.nowy - shot.aimy)) shot.speed = 0;
+	else shot.speed = 1;
+	if (shot.speed == 0) {
+		if (shot.aimx <= shot.nowx) shot.dir = 0;
+		else shot.dir = 1;
+	}
+	else{
+		if (shot.aimy <= shot.nowy) shot.dir = 1;
+		else shot.dir = 0;
+	}
 	stz->addShot(shot);
+	
 }
 
 void nemico::moveClose()

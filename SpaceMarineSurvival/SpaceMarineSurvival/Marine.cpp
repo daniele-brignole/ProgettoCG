@@ -13,6 +13,13 @@ Marine::~Marine()
 {
 }
 
+void Marine::feritaSubita(int danno)
+{
+	this->pv--;
+	if (pv <= 0)gameover = true;
+
+}
+
 void Marine::setPosition(float x, float y) {
 	this->posx = x;
 	this->posy = y;

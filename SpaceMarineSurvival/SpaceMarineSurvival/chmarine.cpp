@@ -10,7 +10,7 @@ chmarine::chmarine(int id,stanza* s) :nemico(s,6)
 	setMov(mov);
 	moving = false;
 	rivolto = 1;
-	setId(0);
+	setId(2);
 }
 
 

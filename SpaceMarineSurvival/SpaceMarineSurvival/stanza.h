@@ -21,6 +21,7 @@ struct E_shot {
 	double nowy;
 	bool erase = false;
 	int dir;
+	int speed;
 };
 struct ostacolo {
 	float x;
@@ -46,11 +47,13 @@ public:
 	int getShotSize();
 	void eraseShot(int i);
 	bool checkEnemyCollision(float x, float y, double hitbox);
+	bool checkMarineCollision(double x, double y, double hitbox);
 private:
 
 	int lunghezza, altezza;
 	int contaround;
 	int contanemici;
+	int wave[3] = { 10,15,20 };
 	float top,bot,right,left;
 	ostacolo ostacolo1;
 	ostacolo ostacolo2;

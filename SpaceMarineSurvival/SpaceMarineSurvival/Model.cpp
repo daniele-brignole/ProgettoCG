@@ -125,8 +125,12 @@ bool MyModel::LoadGLTextures(void)
 	if (texture[9] == 0) return false;
 	
 	texture[10] = SOIL_load_OGL_texture(
-		"../textures/golbat.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+		"../textures/cultista.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (texture[10] == 0) return false;
+
+	texture[11] = SOIL_load_OGL_texture(
+		"../textures/cultista_2.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[11] == 0) return false;
 
 	// Typical Texture Generation Using Data From The Bitmap
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
@@ -253,7 +257,7 @@ bool MyModel::DrawGLScene(void)
 		if (i < room->getShotSize()) {
 			glBindTexture(GL_TEXTURE_2D, texture[6]);
 			e = room->updateShots(i);
-			
+			if(room->checkMarineCollision(e.nowx, e.nowy, 0.03)) this->marine.feritaSubita(1);
 			glBindTexture(GL_TEXTURE_2D, texture[6]);
 			glBegin(GL_QUADS);
 			glTexCoord2f(0, 0);
@@ -273,9 +277,9 @@ bool MyModel::DrawGLScene(void)
 	}
 	std::vector<nemico> NMI = room->getNemici();
 	
-	glBindTexture(GL_TEXTURE_2D, texture[1]);
+	
 	for (int i = 0; i < NMI.size(); i++) {
-		
+		glBindTexture(GL_TEXTURE_2D, texture[NMI[i].getVerso()]);
 		glBegin(GL_QUADS);
 		glTexCoord2f(0, 0);
 		glVertex3f(NMI[i].getPosx() - 0.05f, NMI[i].getPosy() - 0.05f, p.z);
@@ -396,32 +400,32 @@ void MyModel::move(int dir)
 {
 	switch (dir) {
 	case 0:
-		if (room->isMovePossible(dir, p.y + 0.001f,p.x)) {
-			p.y = p.y + 0.001f;
+		if (room->isMovePossible(dir, p.y + 0.003f,p.x)) {
+			p.y = p.y + 0.003f;
 			this->marine.setPosition(p.x, p.y);
 			this->room->setMarx(p.x);
 			this->room->setMary(p.y);
 		}
 		break;
 	case 1:
-		if (room->isMovePossible(dir, p.x + 0.001f,p.y)) {
-			p.x = p.x + 0.001f;
+		if (room->isMovePossible(dir, p.x + 0.003f,p.y)) {
+			p.x = p.x + 0.003f;
 			this->marine.setPosition(p.x, p.y);
 			this->room->setMarx(p.x);
 			this->room->setMary(p.y);
 		}
 		break;
 	case 2:
-		if (room->isMovePossible(dir, p.y - 0.001f,p.x)) {
-			p.y = p.y - 0.001f;
+		if (room->isMovePossible(dir, p.y - 0.003f,p.x)) {
+			p.y = p.y - 0.003f;
 			this->marine.setPosition(p.x, p.y);
 			this->room->setMarx(p.x);
 			this->room->setMary(p.y);
 		}
 		break;
 	case 3:
-		if (room->isMovePossible(dir, p.x - 0.001f,p.y)) {
-			p.x = p.x - 0.001f;
+		if (room->isMovePossible(dir, p.x - 0.003f,p.y)) {
+			p.x = p.x - 0.003f;
 			this->marine.setPosition(p.x, p.y);
 			this->room->setMarx(p.x);
 			this->room->setMary(p.y);
