@@ -171,8 +171,8 @@ bool stanza::checkEnemyCollision(float x, float y, double hitbox)
 			if (nemici[i].damage()) {
 				nemici.erase(nemici.begin() + i);
 				contanemici--;
-				wave[contaround]--;
-				if (wave[contaround-1] == 0 && contaround <4) contaround++;
+				wave[contaround - 1]--;
+				if (wave[contaround-1] <= 0 && contaround < 4) contaround++;
 			}
 			return true;
 		}

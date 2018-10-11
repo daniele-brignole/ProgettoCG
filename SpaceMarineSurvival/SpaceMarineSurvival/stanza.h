@@ -22,6 +22,7 @@ struct E_shot {
 	bool erase = false;
 	int dir;
 	int speed;
+	int type;
 };
 struct ostacolo {
 	float x;
@@ -53,7 +54,7 @@ private:
 	int lunghezza, altezza;
 	int contaround;
 	int contanemici;
-	int wave[3] = { 10,15,20 };
+	int wave[3] = { 2,3,20 };
 	float top,bot,right,left;
 	ostacolo ostacolo1;
 	ostacolo ostacolo2;

@@ -132,6 +132,38 @@ bool MyModel::LoadGLTextures(void)
 		"../textures/cultista_2.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (texture[11] == 0) return false;
 
+	texture[12] = SOIL_load_OGL_texture(
+		"../textures/chMarine_1.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[12] == 0) return false;
+
+	texture[13] = SOIL_load_OGL_texture(
+		"../textures/chMarine_2.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[13] == 0) return false;
+
+	texture[14] = SOIL_load_OGL_texture(
+		"../textures/chMarine_3.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[14] == 0) return false;
+
+	texture[15] = SOIL_load_OGL_texture(
+		"../textures/chMarine_4.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[15] == 0) return false;
+
+	texture[16] = SOIL_load_OGL_texture(
+		"../textures/posseduto_1.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[16] == 0) return false;
+
+	texture[17] = SOIL_load_OGL_texture(
+		"../textures/chMarine_4.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[15] == 0) return false;
+
+	texture[18] = SOIL_load_OGL_texture(
+		"../textures/laser.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[18] == 0) return false;
+	
+	texture[19] = SOIL_load_OGL_texture(
+		"../textures/rubricBolt.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[19] == 0) return false;
+
 	// Typical Texture Generation Using Data From The Bitmap
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -255,10 +287,9 @@ bool MyModel::DrawGLScene(void)
 			glEnd();
 		}
 		if (i < room->getShotSize()) {
-			glBindTexture(GL_TEXTURE_2D, texture[6]);
 			e = room->updateShots(i);
 			if(room->checkMarineCollision(e.nowx, e.nowy, 0.03)) this->marine.feritaSubita(1);
-			glBindTexture(GL_TEXTURE_2D, texture[6]);
+			glBindTexture(GL_TEXTURE_2D, texture[e.type]);
 			glBegin(GL_QUADS);
 			glTexCoord2f(0, 0);
 			glVertex3f(e.nowx - 0.03f, e.nowy - 0.03f, -5);
