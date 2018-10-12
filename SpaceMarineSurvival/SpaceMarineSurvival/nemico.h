@@ -26,9 +26,10 @@ public:
 	void moveClose();
 	void setMov(float mov);
 	bool damage();
+	bool getAttack();
 private:
 	int id;
-	
+	bool attack = false;
 	int verso = 10;
 	float posx, posy;
 	float mov;

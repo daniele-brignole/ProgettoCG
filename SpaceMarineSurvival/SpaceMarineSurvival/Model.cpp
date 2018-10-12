@@ -163,6 +163,38 @@ bool MyModel::LoadGLTextures(void)
 	texture[19] = SOIL_load_OGL_texture(
 		"../textures/rubricBolt.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (texture[19] == 0) return false;
+	
+	texture[20] = SOIL_load_OGL_texture(
+		"../textures/graffio1.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[20] == 0) return false;
+
+	texture[21] = SOIL_load_OGL_texture(
+		"../textures/graffio2.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[21] == 0) return false;
+
+	texture[22] = SOIL_load_OGL_texture(
+		"../textures/graffio3.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[22] == 0) return false;
+
+	texture[23] = SOIL_load_OGL_texture(
+		"../textures/graffio4.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[23] == 0) return false;
+
+	texture[24] = SOIL_load_OGL_texture(
+		"../textures/graffio5.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[24] == 0) return false;
+
+	texture[25] = SOIL_load_OGL_texture(
+		"../textures/graffio6.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[25] == 0) return false;
+
+	texture[26] = SOIL_load_OGL_texture(
+		"../textures/graffio7.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[26] == 0) return false;
+
+	texture[27] = SOIL_load_OGL_texture(
+		"../textures/graffio8.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[27] == 0) return false;
 
 	// Typical Texture Generation Using Data From The Bitmap
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
@@ -220,6 +252,7 @@ bool MyModel::DrawGLScene(void)
 		glVertex3f(Background[i].x, Background[i].y, Background[i].z);
 	}
 	glEnd();
+	//texture marine
 	int rivolto = marine.getRivolto();
 	glBindTexture(GL_TEXTURE_2D, texture[rivolto]);
 	glEnable(GL_BLEND);
@@ -242,7 +275,7 @@ bool MyModel::DrawGLScene(void)
 	glEnd();
 	
 	
-	
+	//generazione ostacoli
 	glBindTexture(GL_TEXTURE_2D, texture[9]);
 	std::vector<ostacolo> blocchi = room->getOstacoli();
 	for (int b = 0; b < blocchi.size(); b++) {
@@ -261,7 +294,7 @@ bool MyModel::DrawGLScene(void)
 		glVertex3f(blocchi[b].x - 0.1, blocchi[b].y + 0.1, -5.0);
 		glEnd();
 	}
-	
+	//texture colpi
 	this->marine.incrementshot();
 	vector<shot> temp = this->marine.getOnScreenShoot();
 	E_shot e;
@@ -306,6 +339,7 @@ bool MyModel::DrawGLScene(void)
 			if (e.erase) room->eraseShot(i);
 		}
 	}
+	//texture nemici
 	std::vector<nemico> NMI = room->getNemici();
 	
 	
@@ -324,6 +358,31 @@ bool MyModel::DrawGLScene(void)
 		glTexCoord2f(0, 1);
 		glVertex3f(NMI[i].getPosx() - 0.05f, NMI[i].getPosy() + 0.05f, p.z);
 		glEnd();
+		now = clock();
+		if (remain < 0 || last > 0) {
+			remain = (double)(now - last) / (double)CLOCKS_PER_SEC;
+		}
+		if (NMI[i].getAttack() && remain >= 2.0) {
+			last = clock();
+			this->marine.feritaSubita(5);
+			for (int l = 20; l < 28; l++) {
+				glBindTexture(GL_TEXTURE_2D, texture[l]);
+				glBegin(GL_QUADS);
+				glTexCoord2f(0, 0);
+				glVertex3f(0 - 0.04f, 0 - 0.04f, p.z);
+
+				glTexCoord2f(1, 0);
+				glVertex3f(0 + 0.04f, 0 - 0.04f, p.z);
+
+				glTexCoord2f(1, 1);
+				glVertex3f(0 + 0.04f, 0 + 0.04f, p.z);
+
+				glTexCoord2f(0, 1);
+				glVertex3f(0 - 0.04f, 0 + 0.04f, p.z);
+				glEnd();
+			}
+			remain = -1;
+		}
 	}
 	
 	

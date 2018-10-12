@@ -72,13 +72,16 @@ private:
 	Marine marine;
 	Vertex p;
 	stanza *room;
+	clock_t now = 0;
+	clock_t last = 0;
+	double remain = 10;
 	//  model data
 	std::vector<Vertex> Background;   // background
 	
 	clock_t Tstamp, Tstart;
 	double Full_elapsed;  // elapsed time in seconds from the beginning of the program
 
-	GLuint	texture[28];			// Storage For 28 Textures!
+	GLuint	texture[30];			// Storage For 28 Textures!
 	GLuint	base;				// Base Display List For The Font Set
 public:
 	//  methods
@@ -107,36 +110,7 @@ public:
 		}
 		p = Vertex (0, -1+0.08f, -5);
 		this->marine.setPosition(0, -1);
-		/*Background.push_back(Vertex(-1, -1, -5, 0, 0));	//primo rett
-		Background.push_back(Vertex(-cell, -1, -5, 1, 0));
-		Background.push_back(Vertex(-cell, 0, -5, 1, 1));
-		Background.push_back(Vertex(-1, 0, -5, 0, 1));
-
-		Background.push_back(Vertex(-cell, -1, -5, 0, 0)); //secondo rett
-		Background.push_back(Vertex(cell, -1, -5, 1, 0));
-		Background.push_back(Vertex(cell, 0, -5, 1, 1));
-		Background.push_back(Vertex(-cell, 0, -5, 0, 1));
-
-		Background.push_back(Vertex(cell, -1, -5, 0, 0)); //terzo rett
-		Background.push_back(Vertex(1, -1, -5, 1, 0));
-		Background.push_back(Vertex(1, 0, -5, 1, 1));
-		Background.push_back(Vertex(cell, 0, -5, 0, 1));
 		
-		Background.push_back(Vertex(cell, 0, -5, 0, 0)); //quarto rett
-		Background.push_back(Vertex(1, 0, -5, 1, 0));
-		Background.push_back(Vertex(1, 1, -5, 1, 1));
-		Background.push_back(Vertex(cell, 1, -5, 0, 1));
-		
-		Background.push_back(Vertex(-cell, 0, -5, 0, 0)); //quinto rett
-		Background.push_back(Vertex(cell, 0, -5, 1, 0));
-		Background.push_back(Vertex(cell, 1, -5, 1, 1));
-		Background.push_back(Vertex(-cell, 1, -5, 0, 1));
-		
-		Background.push_back(Vertex(-1, 0, -5, 0, 0)); //sesto rett
-		Background.push_back(Vertex(-cell, 0, -5, 1, 0));
-		Background.push_back(Vertex(-cell, 1, -5, 1, 1));
-		Background.push_back(Vertex(-1, 1, -5, 0, 1));
-		*/
 		
 		/*this->Tstart = this->Tstamp = clock();
 		this->Full_elapsed = 0;

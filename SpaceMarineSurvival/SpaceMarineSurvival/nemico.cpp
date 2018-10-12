@@ -162,29 +162,23 @@ void nemico::moveClose()
 	if (!(posx +0.05 >= tarx-0.05 && posy + 0.05 >= tary-0.05 && 
 		posx - 0.05 <= tarx + 0.05 && posy - 0.05 <= tary + 0.05)) {
 		double temp;
-		if (abs(posx - tarx) >= abs(posy - tary)) increment = 0;
-		else increment = 1;
-		/*
+		if (abs(posx - tarx) >= abs(posy - tary)) increment = 0; // 0 -> incremento su x
+		else increment = 1;										// 1 -> incremento su y
+		
 		if (increment == 0) {
-			if (tarx <= posx) shot.dir = 0;
-			else shot.dir = 1;
-		}
-		else {
-			if (shot.aimy <= shot.nowy) shot.dir = 1;
-			else shot.dir = 0;
-		}
-		*/
-		if(posx <= tarx) temp = posx + mov;
-		else temp = posx - mov;
-		if (posx == tarx) {
-			if (posy < tary) posy = posy + mov;
-			else posy = posy - mov;
-		}
-		else {
+			if (tarx <= posx) temp = posx - mov;
+			else temp = posx + mov;
 			this->posy = (temp - tarx)*(posy - tary) / (posx - tarx) + tary;
 			this->posx = temp;
 		}
+		else {
+			if (tary <= posy) temp = posy - mov;
+			else temp = posy + mov;
+			this->posx = (temp - tary)*(posx - tarx) / (posy - tary) + tarx;
+			this->posy = temp;
+		}		
 	}
+	else this->attack = true;
 }
 void nemico::setMov(float mov) {
 	this->mov = mov;
@@ -195,6 +189,11 @@ bool nemico::damage()
 	this->pv = this->pv - 2;
 	if (this->pv <= 0) return true;
 	else return false;
+}
+
+bool nemico::getAttack()
+{
+	return attack;
 }
 
 
