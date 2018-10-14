@@ -41,9 +41,9 @@
 #include "stanza.h"
 
 
-#include "audiere.h"
+//#include "audiere.h"
 #include"SOIL.h"
-using namespace audiere;
+//using namespace audiere;
 using namespace std;
 //  LIBRERIE OPENGL e multimendia
 //	OpenGL libraries
@@ -55,7 +55,7 @@ stanza room;
 stanza* r = &room;
 class MyModel Data(r);
 int temp;
-
+int state;
 LRESULT	CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);	// Declaration For WndProc
 
 														///////////////////////////////////////////////////////////
@@ -386,8 +386,39 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 	clock_t now = 0;
 	clock_t last = 0;
 	double remain = 0.5;
+	state = 0;
 	while (!done)									// Loop That Runs While done=FALSE
-	{
+	{	
+		//schermo iniziale
+		while (state == 0) {
+			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))	// Is There A Message Waiting?
+			{
+				if (msg.message == WM_QUIT)				// Have We Received A Quit Message?
+				{
+					done = TRUE;							// If So done=TRUE
+				}
+				else									// If Not, Deal With Window Messages
+				{
+					TranslateMessage(&msg);				// Translate The Message
+					DispatchMessage(&msg);				// Dispatch The Message
+				}
+			}
+			else										// If There Are No Messages
+			{
+				if ((Data.active && !Data.DrawIntro()) || Data.keys[VK_ESCAPE])	// Active?  Was There A Quit Received?
+				{
+					done = TRUE;
+					state = -1;// ESC or DrawGLScene Signalled A Quit
+				}
+				else									// Not Time To Quit, Update Screen
+				{
+					SwapBuffers(Data.hDC);					// Swap Buffers (Double Buffering)
+				}
+			}
+		}
+
+
+		//shermo gioco
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))	// Is There A Message Waiting?
 		{
 			if (msg.message == WM_QUIT)				// Have We Received A Quit Message?

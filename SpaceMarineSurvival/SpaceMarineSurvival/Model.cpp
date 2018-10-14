@@ -195,6 +195,9 @@ bool MyModel::LoadGLTextures(void)
 	texture[27] = SOIL_load_OGL_texture(
 		"../textures/graffio8.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (texture[27] == 0) return false;
+	texture[28] = SOIL_load_OGL_texture(
+		"../textures/TitleScreen.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[28] == 0) return false;
 
 	// Typical Texture Generation Using Data From The Bitmap
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
@@ -275,6 +278,7 @@ bool MyModel::DrawGLScene(void)
 	glEnd();
 	
 	
+	
 	//generazione ostacoli
 	glBindTexture(GL_TEXTURE_2D, texture[9]);
 	std::vector<ostacolo> blocchi = room->getOstacoli();
@@ -342,7 +346,7 @@ bool MyModel::DrawGLScene(void)
 	//texture nemici
 	std::vector<nemico> NMI = room->getNemici();
 	
-	
+	int texF = 0;
 	for (int i = 0; i < NMI.size(); i++) {
 		glBindTexture(GL_TEXTURE_2D, texture[NMI[i].getVerso()]);
 		glBegin(GL_QUADS);
@@ -365,22 +369,23 @@ bool MyModel::DrawGLScene(void)
 		if (NMI[i].getAttack() && remain >= 2.0) {
 			last = clock();
 			this->marine.feritaSubita(5);
-			for (int l = 20; l < 28; l++) {
-				glBindTexture(GL_TEXTURE_2D, texture[l]);
+			texF = 20 + ((int((last* 19))) % 8);
+			//for (int l = 20; l < 28; l++) {
+				glBindTexture(GL_TEXTURE_2D, texture[texF]);
 				glBegin(GL_QUADS);
 				glTexCoord2f(0, 0);
-				glVertex3f(0 - 0.04f, 0 - 0.04f, p.z);
+				glVertex3f(p.x - 0.08f, p.y - 0.08f, p.z);
 
 				glTexCoord2f(1, 0);
-				glVertex3f(0 + 0.04f, 0 - 0.04f, p.z);
+				glVertex3f(p.x + 0.08f, p.y - 0.08f, p.z);
 
 				glTexCoord2f(1, 1);
-				glVertex3f(0 + 0.04f, 0 + 0.04f, p.z);
+				glVertex3f(p.x + 0.08f, p.y + 0.08f, p.z);
 
 				glTexCoord2f(0, 1);
-				glVertex3f(0 - 0.04f, 0 + 0.04f, p.z);
+				glVertex3f(p.x - 0.08f, p.y + 0.08f, p.z);
 				glEnd();
-			}
+			//}
 			remain = -1;
 		}
 	}
@@ -528,6 +533,33 @@ void MyModel::move(int dir)
 void MyModel::setMarineWatch(GLdouble x, GLdouble y)
 {
 	this->marine.setLoS(x, y);
+}
+
+bool MyModel::DrawIntro(void)
+{
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear The Screen And The Depth Buffer
+	glMatrixMode(GL_MODELVIEW);				// Select The Modelview Matrix
+	glLoadIdentity();
+	glEnable(GL_TEXTURE_2D);	// Reset The View
+	RECT r;
+	//this->SetProjection();
+	glClear(GL_COLOR_BUFFER_BIT);
+	glBindTexture(GL_TEXTURE_2D, texture[28]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 0);
+	glVertex3f(-1, -1, -5);
+
+	glTexCoord2f(1, 0);
+	glVertex3f(1, -1, 0);
+
+	glTexCoord2f(1, 1);
+	glVertex3f(1, 1, 0);
+
+	glTexCoord2f(0, 1);
+	glVertex3f(-1, 1, 0);
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+	return true;
 }
 
 

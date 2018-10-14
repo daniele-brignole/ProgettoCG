@@ -126,7 +126,7 @@ public:
 	void glPrint(const char *fmt, ...);			// Custom GL "Print" Routine
 	void move(int dir);
 	void setMarineWatch(GLdouble x, GLdouble y);
-	
+	bool DrawIntro(void);
 	Marine& getMarine();
 private:
 	bool LoadGLTextures(void);
