@@ -81,7 +81,7 @@ private:
 	clock_t Tstamp, Tstart;
 	double Full_elapsed;  // elapsed time in seconds from the beginning of the program
 
-	GLuint	texture[30];			// Storage For 28 Textures!
+	GLuint	texture[40];			// Storage For 28 Textures!
 	GLuint	base;				// Base Display List For The Font Set
 public:
 	//  methods
@@ -126,8 +126,10 @@ public:
 	void glPrint(const char *fmt, ...);			// Custom GL "Print" Routine
 	void move(int dir);
 	void setMarineWatch(GLdouble x, GLdouble y);
+	void SetProjectionIntro();
 	bool DrawIntro(void);
 	Marine& getMarine();
+	bool DrawEnd(int text);
 private:
 	bool LoadGLTextures(void);
 	void SetProjection();

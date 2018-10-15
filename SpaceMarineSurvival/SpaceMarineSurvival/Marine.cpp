@@ -38,6 +38,12 @@ void Marine::setIsFiring()
 	
 	return isShooting;
 }
+void Marine::reset()
+{
+	pv = 100;
+	ammo = 200;
+	rivolto = 1;
+}
 float Marine::spara(int x)
 {
 	shot temp;
@@ -58,6 +64,11 @@ int Marine::getRivolto()
 }
 float Marine::getLosx() {
 	return this->losx;
+}
+
+int Marine::getPv()
+{
+	return pv;
 }
 
 float Marine::getLosy()

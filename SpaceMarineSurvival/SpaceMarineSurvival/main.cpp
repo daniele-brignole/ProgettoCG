@@ -415,86 +415,196 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 					SwapBuffers(Data.hDC);					// Swap Buffers (Double Buffering)
 				}
 			}
+			if (Data.keys['1']) {
+				state = 1;
+			}
+			if (Data.keys['2']) {
+				state = 4;
+			}
 		}
 
 
 		//shermo gioco
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))	// Is There A Message Waiting?
-		{
-			if (msg.message == WM_QUIT)				// Have We Received A Quit Message?
+		while (state == 1) {
+			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))	// Is There A Message Waiting?
 			{
-				done = TRUE;							// If So done=TRUE
+				if (msg.message == WM_QUIT)				// Have We Received A Quit Message?
+				{
+					done = TRUE;							// If So done=TRUE
+				}
+				else									// If Not, Deal With Window Messages
+				{
+					TranslateMessage(&msg);				// Translate The Message
+					DispatchMessage(&msg);				// Dispatch The Message
+				}
 			}
-			else									// If Not, Deal With Window Messages
+			else										// If There Are No Messages
 			{
-				TranslateMessage(&msg);				// Translate The Message
-				DispatchMessage(&msg);				// Dispatch The Message
+
+				room.addEnemy();
+				room.gestisci();
+				// Draw The Scene.  Watch For ESC Key And Quit Messages From DrawGLScene()
+				if ((Data.active && !Data.DrawGLScene()) || Data.keys[VK_ESCAPE])	// Active?  Was There A Quit Received?
+				{
+					done = TRUE;	
+					state = -1;   // ESC or DrawGLScene Signalled A Quit
+				}
+				else									// Not Time To Quit, Update Screen
+				{
+					SwapBuffers(Data.hDC);	
+					if (room.isFine()) {
+				state = 2;
+			}
+				}
+
+			}
+
+			if (Data.keys['W']) {
+				//Data.getMarine().setRivolto(3);
+				Data.move(0);
+			}
+			if (Data.keys['D']) {
+				Data.move(1);
+			}
+			if (Data.keys['S']) {
+				//Data.getMarine().setRivolto(1);
+				Data.move(2);
+			}
+			if (Data.keys['A']) {
+				//Data.getMarine().setRivolto(4);
+				Data.move(3);
+			}
+			now = clock();
+			if (remain < 0 || last > 0) {
+				remain = (double)(now - last) / (double)CLOCKS_PER_SEC;
+			}
+			if (Data.keys[VK_RIGHT] && remain >= 0.5) {
+				last = clock();
+				Data.getMarine().setRivolto(2);
+				Data.getMarine().spara(1);
+				remain = 1;
+
+			}
+			if (Data.keys[VK_LEFT] && remain >= 0.5) {
+				last = clock();
+				Data.getMarine().setRivolto(4);
+				Data.getMarine().spara(3);
+				remain = 1;
+			}
+			if (Data.keys[VK_UP] && remain >= 0.5) {
+				last = clock();
+				Data.getMarine().setRivolto(3);
+				Data.getMarine().spara(0);
+				remain = 1;
+			}
+			if (Data.keys[VK_DOWN] && remain >= 0.5) {
+				last = clock();
+				Data.getMarine().setRivolto(1);
+				Data.getMarine().spara(2);
+				remain = 1;
+				
+			}
+			if (room.isFine()) {
+				state = 2;
+			}
+			if (Data.getMarine().getPv() <= 0) {
+				state = 3;
 			}
 		}
-		else										// If There Are No Messages
-		{
-			
-			room.addEnemy();
-			room.gestisci();
-			// Draw The Scene.  Watch For ESC Key And Quit Messages From DrawGLScene()
-			if ((Data.active && !Data.DrawGLScene()) || Data.keys[VK_ESCAPE])	// Active?  Was There A Quit Received?
+		//schermata livello completato
+		while (state == 2) {
+			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))	// Is There A Message Waiting?
 			{
-				done = TRUE;							// ESC or DrawGLScene Signalled A Quit
+				if (msg.message == WM_QUIT)				// Have We Received A Quit Message?
+				{
+					done = TRUE;							// If So done=TRUE
+				}
+				else									// If Not, Deal With Window Messages
+				{
+					TranslateMessage(&msg);				// Translate The Message
+					DispatchMessage(&msg);				// Dispatch The Message
+				}
 			}
-			else									// Not Time To Quit, Update Screen
+			else										// If There Are No Messages
 			{
-				SwapBuffers(Data.hDC);					// Swap Buffers (Double Buffering)
+				if ((Data.active && !Data.DrawEnd(29)) || Data.keys[VK_ESCAPE])	// Active?  Was There A Quit Received?
+				{
+					done = TRUE;
+					state = -1;// ESC or DrawGLScene Signalled A Quit
+				}
+				else									// Not Time To Quit, Update Screen
+				{
+					SwapBuffers(Data.hDC);					// Swap Buffers (Double Buffering)
+				}
 			}
-	
+			if (Data.keys['E']) {
+				state = 0;
+				room.reset();
+				Data.getMarine().reset();
+			}
 		}
-		
-		if (Data.keys['W']) {
-			//Data.getMarine().setRivolto(3);
-			Data.move(0);
+		//schermata game over
+		while (state == 3) {
+			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))	// Is There A Message Waiting?
+			{
+				if (msg.message == WM_QUIT)				// Have We Received A Quit Message?
+				{
+					done = TRUE;							// If So done=TRUE
+				}
+				else									// If Not, Deal With Window Messages
+				{
+					TranslateMessage(&msg);				// Translate The Message
+					DispatchMessage(&msg);				// Dispatch The Message
+				}
+			}
+			else										// If There Are No Messages
+			{
+				if ((Data.active && !Data.DrawEnd(30)) || Data.keys[VK_ESCAPE])	// Active?  Was There A Quit Received?
+				{
+					done = TRUE;
+					state = -1;// ESC or DrawGLScene Signalled A Quit
+				}
+				else									// Not Time To Quit, Update Screen
+				{
+					SwapBuffers(Data.hDC);					// Swap Buffers (Double Buffering)
+				}
+			}
+			if (Data.keys['E']) {
+				state = 0;
+				room.reset();
+				Data.getMarine().reset();
+			}
 		}
-		if (Data.keys['D']) {
-			Data.move(1);
+		//schermata comandi
+		while (state == 4) {
+			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))	// Is There A Message Waiting?
+			{
+				if (msg.message == WM_QUIT)				// Have We Received A Quit Message?
+				{
+					done = TRUE;							// If So done=TRUE
+				}
+				else									// If Not, Deal With Window Messages
+				{
+					TranslateMessage(&msg);				// Translate The Message
+					DispatchMessage(&msg);				// Dispatch The Message
+				}
+			}
+			else										// If There Are No Messages
+			{
+				if ((Data.active && !Data.DrawEnd(31)) || Data.keys[VK_ESCAPE])	// Active?  Was There A Quit Received?
+				{
+					done = TRUE;
+					state = -1;// ESC or DrawGLScene Signalled A Quit
+				}
+				else									// Not Time To Quit, Update Screen
+				{
+					SwapBuffers(Data.hDC);					// Swap Buffers (Double Buffering)
+				}
+			}
+			if (Data.keys['E']) {
+				state = 0;
+			}
 		}
-		if (Data.keys['S']) {
-			//Data.getMarine().setRivolto(1);
-			Data.move(2);
-		}
-		if (Data.keys['A']) {
-			//Data.getMarine().setRivolto(4);
-			Data.move(3);
-		}
-		now = clock();
-		if (remain < 0 || last > 0) {
-			remain =  (double)(now-last)/(double)CLOCKS_PER_SEC;
-		}
-		if (Data.keys[VK_RIGHT] && remain >= 0.5) {
-			last = clock();
-			Data.getMarine().setRivolto(2);
-			Data.getMarine().spara(1);
-			remain = 1;
-			
-		}
-		if (Data.keys[VK_LEFT] && remain >= 0.5) {
-			last = clock();
-			Data.getMarine().setRivolto(4);
-			Data.getMarine().spara(3);
-			remain = 1;
-		}
-		if (Data.keys[VK_UP] && remain >= 0.5) {
-			last = clock();
-			Data.getMarine().setRivolto(3);
-			Data.getMarine().spara(0);
-			remain = 1;
-		}
-		if (Data.keys[VK_DOWN] && remain >= 0.5) {
-			last = clock();
-			Data.getMarine().setRivolto(1);
-			Data.getMarine().spara(2);
-			remain = 1;
-			
-		}
-		
-		
 	}
 
 	// Shutdown

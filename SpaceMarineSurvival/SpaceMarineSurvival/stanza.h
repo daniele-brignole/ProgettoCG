@@ -49,15 +49,20 @@ public:
 	void eraseShot(int i);
 	bool checkEnemyCollision(float x, float y, double hitbox);
 	bool checkMarineCollision(double x, double y, double hitbox);
+	bool isFine();
+	int getWave(int wave);
+	int GetContaround();
+	void reset();
 private:
 
 	int lunghezza, altezza;
 	int contaround;
 	int contanemici;
-	int wave[3] = { 2,3,20 };
+	int wave[3] = {10,15,20};
 	float top,bot,right,left;
 	ostacolo ostacolo1;
 	ostacolo ostacolo2;
+	bool fine = false;
 	std::vector<ostacolo> ostacoli;
 	std::vector<nemico> nemici;
 	std::vector<E_shot> colpi;

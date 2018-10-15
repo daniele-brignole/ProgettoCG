@@ -28,9 +28,11 @@ public:
 	void setLoS(float x, float y);
 	void setIsFiring();
 	bool isFiring();
+	void reset();
 	void stopfire();
 	int getRivolto();
 	float getLosx();
+	int getPv();
 	float getLosy();
 	void incrementshot();
 	void setRivolto(int val);

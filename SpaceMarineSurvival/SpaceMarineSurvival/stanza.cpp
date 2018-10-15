@@ -172,7 +172,8 @@ bool stanza::checkEnemyCollision(float x, float y, double hitbox)
 				nemici.erase(nemici.begin() + i);
 				contanemici--;
 				wave[contaround - 1]--;
-				if (wave[contaround-1] <= 0 && contaround < 4) contaround++;
+				if (wave[contaround-1] <= 0) contaround++;
+				if (contaround >= 4) fine = true;
 			}
 			return true;
 		}
@@ -185,4 +186,34 @@ bool stanza::checkMarineCollision(double x, double y, double hitbox) {
 		y + hitbox > mary - 0.05 &&
 		y - hitbox < mary + 0.05) return true;
 	else return false;
+}
+
+bool stanza::isFine()
+{
+	return fine;
+}
+
+int stanza::getWave(int wave)
+{
+	return this->wave[wave];
+}
+
+int stanza::GetContaround()
+{
+	return contaround;
+}
+
+void stanza::reset()
+{
+	this->nemici.clear();
+	this->marx = 0;
+	this->mary = 0;
+	this->colpi.clear();
+	this->contanemici = 0;
+	this->contaround = 1;
+	this->fine = false;
+	this->nemici.clear();
+	this->wave[0] = 10;
+	this->wave[1] = 15;
+	this->wave[2] = 20;
 }

@@ -198,6 +198,17 @@ bool MyModel::LoadGLTextures(void)
 	texture[28] = SOIL_load_OGL_texture(
 		"../textures/TitleScreen.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (texture[28] == 0) return false;
+	texture[29] = SOIL_load_OGL_texture(
+		"../textures/fine.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[29] == 0) return false;
+	
+	texture[30] = SOIL_load_OGL_texture(
+		"../textures/gameover.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[30] == 0) return false;
+
+	texture[31] = SOIL_load_OGL_texture(
+		"../textures/comandi.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[31] == 0) return false;
 
 	// Typical Texture Generation Using Data From The Bitmap
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
@@ -403,29 +414,38 @@ bool MyModel::DrawGLScene(void)
 	glLoadIdentity();
 	//  Some text
 	
-	/*
+	
 	// Color
-	glColor3f(1.0f, 1.0f, 1.0f);
+	glColor3f(0.0f, 1.0f, 0.0f);
 
 	// Position The Text On The Screen
-	glRasterPos3f(-(float)plx + PixToCoord_X(10), (float)ply - PixToCoord_Y(21),
+	glRasterPos3f(-(float)plx - PixToCoord_X(600), (float)ply - PixToCoord_Y(21),
 		-4);
 
 	// compute fps and write text
-	this->frames++;
+	/*this->frames++;
 	if (this->frames > 18) {
 		this->fps = frames / frameTime;
 		this->frames = 0; this->frameTime = 0;
-	}
-	this->glPrint("Looking now: %6.2f - %6.2f - %d  -  Fps %6.2f",
-		marine.getLosx(), marine.getLosy(),temp, fps);
-
+	}*/
+	int health = this->getMarine().getPv();
+	int round = room->GetContaround();
+	int remaining = room->getWave(round);
+	this->glPrint("Wave: %d",
+		round);
+	glColor3f(1.0, 0.0, 0.0);
+	glRasterPos3f(-(float)plx - PixToCoord_X(600), (float)ply + PixToCoord_Y(200),
+		-4);
+	this->glPrint("Health: %d",
+		health);
+	/*	
 	if (this->Full_elapsed < 6) {
 		glRasterPos3f(-(float)plx + PixToCoord_X(10), (float)-ply + PixToCoord_Y(21),
 			-4);
 		this->glPrint("F2/F3/F4 for sounds");
 	}
 	*/
+	glColor3f(1.0, 1.0, 1.0);
 	glEnable(GL_TEXTURE_2D);							// Enable Texture Mapping
 	return true;
 }
@@ -534,6 +554,18 @@ void MyModel::setMarineWatch(GLdouble x, GLdouble y)
 {
 	this->marine.setLoS(x, y);
 }
+void MyModel::SetProjectionIntro() {
+	glMatrixMode(GL_PROJECTION);						// Select The Projection Matrix
+	glLoadIdentity();									// Reset The Projection Matrix
+
+
+	double Far = 2.0 * 1400;
+
+	gluPerspective(25.0, (GLfloat)1416 / (GLfloat)600, 0.001, Far);
+
+	gluLookAt(0, 0, 0, 0, 0, -1, 0.0, 1.0, 0.0);
+}
+
 
 bool MyModel::DrawIntro(void)
 {
@@ -542,21 +574,22 @@ bool MyModel::DrawIntro(void)
 	glLoadIdentity();
 	glEnable(GL_TEXTURE_2D);	// Reset The View
 	RECT r;
-	//this->SetProjection();
-	glClear(GL_COLOR_BUFFER_BIT);
+	this->SetProjectionIntro();
+	//glMatrixMode(GL_PROJECTION);
+	//glOrtho(0, 1, 0, 1, -1, 1);
 	glBindTexture(GL_TEXTURE_2D, texture[28]);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0, 0);
-	glVertex3f(-1, -1, -5);
+	glVertex3f(-PixToCoord_X(1416), -PixToCoord_Y(600), -5);
 
 	glTexCoord2f(1, 0);
-	glVertex3f(1, -1, 0);
+	glVertex3f(PixToCoord_X(1416), -PixToCoord_Y(600), -5);
 
 	glTexCoord2f(1, 1);
-	glVertex3f(1, 1, 0);
+	glVertex3f(PixToCoord_X(1416), PixToCoord_Y(600), -5);
 
 	glTexCoord2f(0, 1);
-	glVertex3f(-1, 1, 0);
+	glVertex3f(-PixToCoord_X(1416), PixToCoord_Y(600), -5);
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 	return true;
@@ -566,4 +599,32 @@ bool MyModel::DrawIntro(void)
 	Marine& MyModel::getMarine()
 	{
 		return this->marine;
+	}
+
+	bool MyModel::DrawEnd(int text)
+	{
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear The Screen And The Depth Buffer
+		glMatrixMode(GL_MODELVIEW);				// Select The Modelview Matrix
+		glLoadIdentity();
+		glEnable(GL_TEXTURE_2D);	// Reset The View
+		RECT r;
+		this->SetProjectionIntro();
+		//glMatrixMode(GL_PROJECTION);
+		//glOrtho(0, 1, 0, 1, -1, 1);
+		glBindTexture(GL_TEXTURE_2D, texture[text]);
+		glBegin(GL_QUADS);
+		glTexCoord2f(0, 0);
+		glVertex3f(-PixToCoord_X(1416), -PixToCoord_Y(600), -5);
+
+		glTexCoord2f(1, 0);
+		glVertex3f(PixToCoord_X(1416), -PixToCoord_Y(600), -5);
+
+		glTexCoord2f(1, 1);
+		glVertex3f(PixToCoord_X(1416), PixToCoord_Y(600), -5);
+
+		glTexCoord2f(0, 1);
+		glVertex3f(-PixToCoord_X(1416), PixToCoord_Y(600), -5);
+		glEnd();
+		glDisable(GL_TEXTURE_2D);
+		return true;
 	}
