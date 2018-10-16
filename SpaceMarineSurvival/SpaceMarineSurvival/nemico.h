@@ -27,8 +27,11 @@ public:
 	void setMov(float mov);
 	bool damage();
 	bool getAttack();
+	bool isMorto();
+	void setMorto(bool m);
 private:
 	int id;
+	bool morto = false;
 	bool attack = false;
 	int verso = 10;
 	float posx, posy;

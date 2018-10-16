@@ -47,8 +47,10 @@ public:
 	E_shot& updateShots(int i);
 	int getShotSize();
 	void eraseShot(int i);
+	bool checkDamage(int i);
 	bool checkEnemyCollision(float x, float y, double hitbox);
 	bool checkMarineCollision(double x, double y, double hitbox);
+	void eraseEnemy(int i);
 	bool isFine();
 	int getWave(int wave);
 	int GetContaround();

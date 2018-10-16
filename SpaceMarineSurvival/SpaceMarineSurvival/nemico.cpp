@@ -196,4 +196,14 @@ bool nemico::getAttack()
 	return attack;
 }
 
+bool nemico::isMorto()
+{
+	return this->morto;
+}
+
+void nemico::setMorto(bool m)
+{
+	this->morto = m;
+}
+
 

@@ -12,7 +12,7 @@
 #include "Model.h"
 #include "stanza.h"
 #include "SOIL.h"
-
+#include<string>
 
 // All Setup For OpenGL Goes Here
 bool MyModel::InitGL(void)
@@ -210,6 +210,33 @@ bool MyModel::LoadGLTextures(void)
 		"../textures/comandi.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (texture[31] == 0) return false;
 
+	texture[32] = SOIL_load_OGL_texture(
+		"../textures/boom1.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[31] == 0) return false;
+
+	texture[33] = SOIL_load_OGL_texture(
+		"../textures/boom2.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[33] == 0) return false;
+
+	texture[34] = SOIL_load_OGL_texture(
+		"../textures/boom3.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[34] == 0) return false;
+	
+	texture[35] = SOIL_load_OGL_texture(
+		"../textures/boom4.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[35] == 0) return false;
+
+	texture[36] = SOIL_load_OGL_texture(
+		"../textures/boom5.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[36] == 0) return false;
+
+	texture[37] = SOIL_load_OGL_texture(
+		"../textures/boom6.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[37] == 0) return false;
+
+	texture[38] = SOIL_load_OGL_texture(
+		"../textures/boom7.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[38] == 0) return false;
 	// Typical Texture Generation Using Data From The Bitmap
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -359,29 +386,51 @@ bool MyModel::DrawGLScene(void)
 	
 	int texF = 0;
 	for (int i = 0; i < NMI.size(); i++) {
-		glBindTexture(GL_TEXTURE_2D, texture[NMI[i].getVerso()]);
-		glBegin(GL_QUADS);
-		glTexCoord2f(0, 0);
-		glVertex3f(NMI[i].getPosx() - 0.05f, NMI[i].getPosy() - 0.05f, p.z);
+		if (NMI[i].isMorto()) {
+			for (int k = 32; k < 39; k++) {
+				
+				glBindTexture(GL_TEXTURE_2D, texture[k]);
+				glBegin(GL_QUADS);
+				glTexCoord2f(0, 0);
+				glVertex3f(NMI[i].getPosx() - 0.05f, NMI[i].getPosy() - 0.05f, p.z);
 
-		glTexCoord2f(1, 0);
-		glVertex3f(NMI[i].getPosx() + 0.05f, NMI[i].getPosy() - 0.05f, p.z);
+				glTexCoord2f(1, 0);
+				glVertex3f(NMI[i].getPosx() + 0.05f, NMI[i].getPosy() - 0.05f, p.z);
 
-		glTexCoord2f(1, 1);
-		glVertex3f(NMI[i].getPosx() + 0.05f, NMI[i].getPosy() + 0.05f, p.z);
+				glTexCoord2f(1, 1);
+				glVertex3f(NMI[i].getPosx() + 0.05f, NMI[i].getPosy() + 0.05f, p.z);
 
-		glTexCoord2f(0, 1);
-		glVertex3f(NMI[i].getPosx() - 0.05f, NMI[i].getPosy() + 0.05f, p.z);
-		glEnd();
-		now = clock();
-		if (remain < 0 || last > 0) {
-			remain = (double)(now - last) / (double)CLOCKS_PER_SEC;
+				glTexCoord2f(0, 1);
+				glVertex3f(NMI[i].getPosx() - 0.05f, NMI[i].getPosy() + 0.05f, p.z);
+				glEnd();
+			}
+			room->eraseEnemy(i);
 		}
-		if (NMI[i].getAttack() && remain >= 2.0) {
-			last = clock();
-			this->marine.feritaSubita(5);
-			texF = 20 + ((int((last* 19))) % 8);
-			//for (int l = 20; l < 28; l++) {
+		
+		else {
+			glBindTexture(GL_TEXTURE_2D, texture[NMI[i].getVerso()]);
+			glBegin(GL_QUADS);
+			glTexCoord2f(0, 0);
+			glVertex3f(NMI[i].getPosx() - 0.05f, NMI[i].getPosy() - 0.05f, p.z);
+
+			glTexCoord2f(1, 0);
+			glVertex3f(NMI[i].getPosx() + 0.05f, NMI[i].getPosy() - 0.05f, p.z);
+
+			glTexCoord2f(1, 1);
+			glVertex3f(NMI[i].getPosx() + 0.05f, NMI[i].getPosy() + 0.05f, p.z);
+
+			glTexCoord2f(0, 1);
+			glVertex3f(NMI[i].getPosx() - 0.05f, NMI[i].getPosy() + 0.05f, p.z);
+			glEnd();
+			now = clock();
+			if (remain < 0 || last > 0) {
+				remain = (double)(now - last) / (double)CLOCKS_PER_SEC;
+			}
+			if (NMI[i].getAttack() && remain >= 2.0) {
+				last = clock();
+				this->marine.feritaSubita(5);
+				texF = 20 + ((int((last * 19))) % 8);
+				//for (int l = 20; l < 28; l++) {
 				glBindTexture(GL_TEXTURE_2D, texture[texF]);
 				glBegin(GL_QUADS);
 				glTexCoord2f(0, 0);
@@ -396,8 +445,9 @@ bool MyModel::DrawGLScene(void)
 				glTexCoord2f(0, 1);
 				glVertex3f(p.x - 0.08f, p.y + 0.08f, p.z);
 				glEnd();
-			//}
-			remain = -1;
+				//}
+				remain = -1;
+			}
 		}
 	}
 	

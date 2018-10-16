@@ -160,16 +160,29 @@ void stanza::eraseShot(int i)
 {
 	colpi.erase(colpi.begin() + i);
 }
-
+bool stanza::checkDamage(int i) {
+	if (nemici[i].damage()) {
+		//nemici.erase(nemici.begin() + i);
+		nemici[i].setMorto(true);
+		contanemici--;
+		wave[contaround - 1]--;
+		if (wave[contaround - 1] <= 0) contaround++;
+		if (contaround >= 4) fine = true;
+		return true;
+	}
+	else return false;
+}
 bool stanza::checkEnemyCollision(float x, float y, double hitbox)
 {
 	for (int i = 0; i < nemici.size(); i++) {
 		if (x + hitbox > nemici[i].getPosx() - 0.05 && 
 			x - hitbox < nemici[i].getPosx() + 0.05 && 
 			y + hitbox > nemici[i].getPosy() - 0.05 && 
-			y - hitbox < nemici[i].getPosy() + 0.05) {
+			y - hitbox < nemici[i].getPosy() + 0.05) 
+		{
 			if (nemici[i].damage()) {
-				nemici.erase(nemici.begin() + i);
+				//nemici.erase(nemici.begin() + i);
+				nemici[i].setMorto(true);
 				contanemici--;
 				wave[contaround - 1]--;
 				if (wave[contaround-1] <= 0) contaround++;
@@ -187,7 +200,9 @@ bool stanza::checkMarineCollision(double x, double y, double hitbox) {
 		y - hitbox < mary + 0.05) return true;
 	else return false;
 }
-
+void stanza::eraseEnemy(int i) {
+	nemici.erase(nemici.begin() + i);
+}
 bool stanza::isFine()
 {
 	return fine;
