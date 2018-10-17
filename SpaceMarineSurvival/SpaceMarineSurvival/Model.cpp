@@ -263,6 +263,8 @@ void MyModel::SetProjection()
 
 bool MyModel::DrawGLScene(void)
 {
+	room->addEnemy();
+	room->gestisci();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear The Screen And The Depth Buffer
 	glMatrixMode(GL_MODELVIEW);				// Select The Modelview Matrix
 	glLoadIdentity();									// Reset The View
@@ -411,6 +413,7 @@ bool MyModel::DrawGLScene(void)
 				//
 			}
 			room->eraseEnemy(i);
+			glLoadIdentity();
 		}
 		
 		else {

@@ -41,9 +41,9 @@
 #include "stanza.h"
 
 
-//#include "audiere.h"
+#include "audiere.h"
 #include"SOIL.h"
-//using namespace audiere;
+using namespace audiere;
 using namespace std;
 //  LIBRERIE OPENGL e multimendia
 //	OpenGL libraries
@@ -368,18 +368,23 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 	}
 
 	//  AUDIO - start
-	/*AudioDevicePtr device(OpenDevice());
+	AudioDevicePtr device(OpenDevice());
 	if (!device) {
 		return 0;         // failure
-	}*/
-	/*OutputStreamPtr stream(OpenSound(device, "../Data/ophelia.mp3", true));
+	}
+	OutputStreamPtr stream(OpenSound(device, "../sounds/mf02.mp3", true));
 	if (!stream) {
 		return 0;         // failure
 	}
 	stream->setRepeat(true);
 	stream->setVolume(0.5f); // 50% volume
-	stream->play();
-	*/
+	
+	OutputStreamPtr gamemusic(OpenSound(device, "../sounds/sector1.mp3", true));
+	/*if (!gamemusic) {
+		return 0;         // failure
+	}*/
+	gamemusic->setRepeat(true);
+	gamemusic->setVolume(0.5f);
 	
 	//  AUDIO - end
 
@@ -390,8 +395,10 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 	state = 0;
 	while (!done)									// Loop That Runs While done=FALSE
 	{	
+		
 		//schermo iniziale
 		while (state == 0) {
+			stream->play();
 			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))	// Is There A Message Waiting?
 			{
 				if (msg.message == WM_QUIT)				// Have We Received A Quit Message?
@@ -409,6 +416,7 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 				if ((Data.active && !Data.DrawIntro()) || Data.keys[VK_ESCAPE])	// Active?  Was There A Quit Received?
 				{
 					done = TRUE;
+					stream->stop();
 					state = -1;// ESC or DrawGLScene Signalled A Quit
 				}
 				else									// Not Time To Quit, Update Screen
@@ -417,9 +425,13 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 				}
 			}
 			if (Data.keys['1']) {
+				stream->stop();
+				stream->reset();
 				state = 1;
 			}
 			if (Data.keys['2']) {
+				stream->stop();
+				stream->reset();
 				state = 4;
 			}
 		}
@@ -427,6 +439,7 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 
 		//shermo gioco
 		while (state == 1) {
+			gamemusic->play();
 			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))	// Is There A Message Waiting?
 			{
 				if (msg.message == WM_QUIT)				// Have We Received A Quit Message?
@@ -442,8 +455,7 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 			else										// If There Are No Messages
 			{
 
-				room.addEnemy();
-				room.gestisci();
+				
 				// Draw The Scene.  Watch For ESC Key And Quit Messages From DrawGLScene()
 				if ((Data.active && !Data.DrawGLScene()) || Data.keys[VK_ESCAPE])	// Active?  Was There A Quit Received?
 				{
@@ -454,8 +466,10 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 				{
 					SwapBuffers(Data.hDC);	
 					if (room.isFine()) {
-				state = 2;
-			}
+						gamemusic->stop();
+						gamemusic->reset();
+						state = 2;
+					}
 				}
 
 			}
@@ -506,9 +520,13 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 				
 			}
 			if (room.isFine()) {
+				gamemusic->stop();
+				gamemusic->reset();
 				state = 2;
 			}
 			if (Data.getMarine().getPv() <= 0) {
+				gamemusic->stop();
+				gamemusic->reset();
 				state = 3;
 			}
 		}

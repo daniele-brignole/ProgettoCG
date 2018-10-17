@@ -162,7 +162,6 @@ void stanza::eraseShot(int i)
 }
 bool stanza::checkDamage(int i) {
 	if (nemici[i].damage()) {
-		//nemici.erase(nemici.begin() + i);
 		nemici[i].setMorto(true);
 		contanemici--;
 		wave[contaround - 1]--;
@@ -181,7 +180,6 @@ bool stanza::checkEnemyCollision(float x, float y, double hitbox)
 			y - hitbox < nemici[i].getPosy() + 0.05) 
 		{
 			if (nemici[i].damage()) {
-				//nemici.erase(nemici.begin() + i);
 				nemici[i].setMorto(true);
 				contanemici--;
 				wave[contaround - 1]--;
