@@ -141,8 +141,8 @@ E_shot& stanza::updateShots(int i)
 		else temp = colpi[i].nowy - 0.005;
 		colpi[i].nowx = (temp - colpi[i].aimy)*(colpi[i].nowx - colpi[i].aimx) / (colpi[i].nowy - colpi[i].aimy) + colpi[i].aimx;
 		colpi[i].nowy = temp;
-		if (temp < -1.30 || temp >1.30 || colpi[i].nowy < -1 ||
-			colpi[i].nowy > 1 || checkCollision(colpi[i].nowx, colpi[i].nowy, 0.03) ||
+		if (temp < -1 || temp >1 || colpi[i].nowx < -1.30 ||
+			colpi[i].nowx > 1.30 || checkCollision(colpi[i].nowx, colpi[i].nowy, 0.03) ||
 			checkMarineCollision(colpi[i].nowx, colpi[i].nowy, 0.03))
 		{
 			colpi[i].erase = true;

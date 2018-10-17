@@ -211,10 +211,10 @@ bool MyModel::LoadGLTextures(void)
 	if (texture[31] == 0) return false;
 
 	texture[32] = SOIL_load_OGL_texture(
-		"../textures/boom1.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-	if (texture[31] == 0) return false;
+		"../textures/boom.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (texture[32] == 0) return false;
 
-	texture[33] = SOIL_load_OGL_texture(
+	/*texture[33] = SOIL_load_OGL_texture(
 		"../textures/boom2.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (texture[33] == 0) return false;
 
@@ -237,6 +237,7 @@ bool MyModel::LoadGLTextures(void)
 	texture[38] = SOIL_load_OGL_texture(
 		"../textures/boom7.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (texture[38] == 0) return false;
+	*/
 	// Typical Texture Generation Using Data From The Bitmap
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -387,22 +388,27 @@ bool MyModel::DrawGLScene(void)
 	int texF = 0;
 	for (int i = 0; i < NMI.size(); i++) {
 		if (NMI[i].isMorto()) {
-			for (int k = 32; k < 39; k++) {
-				
-				glBindTexture(GL_TEXTURE_2D, texture[k]);
+			glBindTexture(GL_TEXTURE_2D, texture[32]);
+			for (int k = 0; k < 7 ; k++) {
+				double j = (k / 7.0) ;
+				double h = (k+1) / 7.0 ;
+				glMatrixMode(GL_MODELVIEW);
+				glLoadIdentity();
 				glBegin(GL_QUADS);
-				glTexCoord2f(0, 0);
+				glTexCoord2f(j, 0);
 				glVertex3f(NMI[i].getPosx() - 0.05f, NMI[i].getPosy() - 0.05f, p.z);
 
-				glTexCoord2f(1, 0);
+				glTexCoord2f(h, 0);
 				glVertex3f(NMI[i].getPosx() + 0.05f, NMI[i].getPosy() - 0.05f, p.z);
 
-				glTexCoord2f(1, 1);
+				glTexCoord2f(h, 1);
 				glVertex3f(NMI[i].getPosx() + 0.05f, NMI[i].getPosy() + 0.05f, p.z);
 
-				glTexCoord2f(0, 1);
+				glTexCoord2f(j, 1);
 				glVertex3f(NMI[i].getPosx() - 0.05f, NMI[i].getPosy() + 0.05f, p.z);
 				glEnd();
+				//SwapBuffers(this->hDC);
+				//
 			}
 			room->eraseEnemy(i);
 		}

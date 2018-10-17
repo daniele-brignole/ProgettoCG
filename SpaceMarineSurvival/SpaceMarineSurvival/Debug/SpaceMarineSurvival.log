@@ -1,24 +1,9 @@
-﻿  Model.cpp
+﻿  main.cpp
 c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.h(94): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(290): warning C4018: '<': errata corrispondenza tra signed e unsigned
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(323): warning C4018: '<': errata corrispondenza tra signed e unsigned
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(327): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(330): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(333): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(336): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(343): warning C4018: '>': errata corrispondenza tra signed e unsigned
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(345): warning C4018: '<': errata corrispondenza tra signed e unsigned
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(352): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(355): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(358): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(361): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(370): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(373): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(376): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(379): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(388): warning C4018: '<': errata corrispondenza tra signed e unsigned
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(606): warning C4244: 'argomento': conversione da 'GLdouble' a 'float'. Possibile perdita di dati.
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(627): warning C4101: 'r': variabile locale senza riferimenti
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(661): warning C4101: 'r': variabile locale senza riferimenti
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\main.cpp(221): warning C4838: la conversione da 'int' a 'BYTE' richiede una conversione verso un tipo di dati più piccolo
+SOIL.lib(image_DXT.obj) : warning LNK4099: impossibile trovare il PDB 'vc100.pdb' con 'SOIL.lib(image_DXT.obj)' o in 'C:\Users\Tiziana\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\vc100.pdb'; oggetto collegato senza informazioni di debug
+SOIL.lib(image_helper.obj) : warning LNK4099: impossibile trovare il PDB 'vc100.pdb' con 'SOIL.lib(image_helper.obj)' o in 'C:\Users\Tiziana\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\vc100.pdb'; oggetto collegato senza informazioni di debug
+SOIL.lib(SOIL.obj) : warning LNK4099: impossibile trovare il PDB 'vc100.pdb' con 'SOIL.lib(SOIL.obj)' o in 'C:\Users\Tiziana\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\vc100.pdb'; oggetto collegato senza informazioni di debug
+SOIL.lib(stb_image_aug.obj) : warning LNK4099: impossibile trovare il PDB 'vc100.pdb' con 'SOIL.lib(stb_image_aug.obj)' o in 'C:\Users\Tiziana\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\vc100.pdb'; oggetto collegato senza informazioni di debug
   SpaceMarineSurvival.vcxproj -> C:\Users\Tiziana\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.exe
   SpaceMarineSurvival.vcxproj -> C:\Users\Tiziana\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.pdb (Partial PDB)

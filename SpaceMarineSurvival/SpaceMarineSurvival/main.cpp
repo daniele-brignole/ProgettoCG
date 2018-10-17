@@ -48,7 +48,8 @@ using namespace std;
 //  LIBRERIE OPENGL e multimendia
 //	OpenGL libraries
 #pragma comment( lib, "opengl32.lib" )				// Search For OpenGL32.lib While Linking
-#pragma comment( lib, "glu32.lib" )						// Search For GLu32.lib While Linking
+#pragma comment( lib, "glu32.lib" )	
+//#pragma comment( lib, "audiere.lib" )	// Search For GLu32.lib While Linking
 //#pragma comment( lib, "winmm.lib" )						// Search For WinMM Library While Linking
 
 stanza room;
@@ -370,16 +371,16 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 	/*AudioDevicePtr device(OpenDevice());
 	if (!device) {
 		return 0;         // failure
-	}
-	OutputStreamPtr stream(OpenSound(device, "../Data/ophelia.mp3", true));
+	}*/
+	/*OutputStreamPtr stream(OpenSound(device, "../Data/ophelia.mp3", true));
 	if (!stream) {
 		return 0;         // failure
 	}
 	stream->setRepeat(true);
 	stream->setVolume(0.5f); // 50% volume
 	stream->play();
-
 	*/
+	
 	//  AUDIO - end
 
 	//ShowCursor(FALSE);
