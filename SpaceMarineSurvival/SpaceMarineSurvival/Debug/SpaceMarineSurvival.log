@@ -1,5 +1,5 @@
 ﻿  main.cpp
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.h(94): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
-c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\main.cpp(221): warning C4838: la conversione da 'int' a 'BYTE' richiede una conversione verso un tipo di dati più piccolo
-  SpaceMarineSurvival.vcxproj -> C:\Users\Tiziana\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.exe
-  SpaceMarineSurvival.vcxproj -> C:\Users\Tiziana\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.pdb (Partial PDB)
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.h(94): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
+c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\main.cpp(221): warning C4838: la conversione da 'int' a 'BYTE' richiede una conversione verso un tipo di dati più piccolo
+  SpaceMarineSurvival.vcxproj -> C:\Users\Daniele\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.exe
+  SpaceMarineSurvival.vcxproj -> C:\Users\Daniele\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.pdb (Partial PDB)

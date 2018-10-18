@@ -6,7 +6,7 @@
 #include<iostream>
 #include <random>
 #include <time.h>
-
+#include "audiere.h"
 class stanza;
 class nemico
 {
@@ -31,6 +31,8 @@ public:
 	void setMorto(bool m);
 private:
 	int id;
+	audiere::AudioDevicePtr device;
+	audiere::OutputStreamPtr laser;
 	bool morto = false;
 	bool attack = false;
 	int verso = 10;

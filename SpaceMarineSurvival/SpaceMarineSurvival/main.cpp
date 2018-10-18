@@ -379,12 +379,23 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 	stream->setRepeat(true);
 	stream->setVolume(0.5f); // 50% volume
 	
-	OutputStreamPtr gamemusic(OpenSound(device, "../sounds/sector1.mp3", true));
-	/*if (!gamemusic) {
+	OutputStreamPtr gamemusic(OpenSound(device, "../sounds/sector1.wav", true));
+	if (!gamemusic) {
 		return 0;         // failure
-	}*/
+	}
 	gamemusic->setRepeat(true);
 	gamemusic->setVolume(0.5f);
+
+	OutputStreamPtr gameover(OpenSound(device, "../sounds/gameover.mp3", true));
+	if (!gameover) {
+		return 0;         // failure
+	}
+	gameover->setRepeat(false);
+	gameover->setVolume(0.5f);
+	
+	OutputStreamPtr marineshot(OpenSound(device, "../sounds/fucile.mp3", true));
+	marineshot->setVolume(0.1f);
+
 	
 	//  AUDIO - end
 
@@ -498,31 +509,38 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 				Data.getMarine().setRivolto(2);
 				Data.getMarine().spara(1);
 				remain = 1;
-
+				if (marineshot->isPlaying()) marineshot->reset();
+				else marineshot->play();
 			}
 			if (Data.keys[VK_LEFT] && remain >= 0.5) {
 				last = clock();
 				Data.getMarine().setRivolto(4);
 				Data.getMarine().spara(3);
 				remain = 1;
+				if (marineshot->isPlaying()) marineshot->reset();
+				else marineshot->play();
 			}
 			if (Data.keys[VK_UP] && remain >= 0.5) {
 				last = clock();
 				Data.getMarine().setRivolto(3);
 				Data.getMarine().spara(0);
 				remain = 1;
+				if (marineshot->isPlaying()) marineshot->reset();
+				else marineshot->play();
 			}
 			if (Data.keys[VK_DOWN] && remain >= 0.5) {
 				last = clock();
 				Data.getMarine().setRivolto(1);
 				Data.getMarine().spara(2);
 				remain = 1;
-				
+				if (marineshot->isPlaying()) marineshot->reset();
+				else marineshot->play();
 			}
 			if (room.isFine()) {
 				gamemusic->stop();
 				gamemusic->reset();
 				state = 2;
+
 			}
 			if (Data.getMarine().getPv() <= 0) {
 				gamemusic->stop();
@@ -564,6 +582,8 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 		}
 		//schermata game over
 		while (state == 3) {
+			gameover->setRepeat(false);
+			gameover->play();
 			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))	// Is There A Message Waiting?
 			{
 				if (msg.message == WM_QUIT)				// Have We Received A Quit Message?
@@ -592,6 +612,8 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 				state = 0;
 				room.reset();
 				Data.getMarine().reset();
+				gameover->stop();
+				gameover->reset();
 			}
 		}
 		//schermata comandi

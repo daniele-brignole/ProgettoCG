@@ -11,7 +11,9 @@ nemico::nemico(stanza* stz,int pv)
 	std::mt19937 eng(rd()); // seed the generator
 	std::uniform_real_distribution<> distrx(-1.30, 1.30);
 	posx = (float) distrx(eng);
-		
+	device = audiere::AudioDevicePtr(audiere::OpenDevice());
+	laser = audiere::OutputStreamPtr(audiere::OpenSound(device, "../sounds/laser.mp3", true));
+	laser->setVolume(0.10f);
 	std::uniform_real_distribution<> distry(-1, 1);
 	posy = (float) distry(eng);
 		
@@ -134,6 +136,7 @@ void nemico::spara()
 			else if (coeffangol < -1) verso = 14;
 			else verso = 13;
 		}
+		
 	}
 	
 	
@@ -150,7 +153,8 @@ void nemico::spara()
 		else shot.dir = 0;
 	}
 	stz->addShot(shot);
-	
+	if (laser->isPlaying()) laser->reset();
+	else laser->play();
 }
 
 void nemico::moveClose()

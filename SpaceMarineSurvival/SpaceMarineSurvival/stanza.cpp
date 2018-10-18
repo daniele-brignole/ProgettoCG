@@ -6,7 +6,8 @@ stanza::stanza()
 {
 	ostacolo1.x = 0.5;
 	ostacolo1.y = 0.5;
-
+	marx = 0;
+	mary = -1;
 	ostacolo2.x = -0.5;
 	ostacolo2.y = -0.5;
 	ostacoli.push_back(ostacolo1);
@@ -57,7 +58,7 @@ void stanza::addEnemy()
 	if (contanemici < 7) {
 		contanemici++;
 		nemico n = generaNemico();
-		nemici.push_back(n);
+		if(!checkCollision(n.getPosx(),n.getPosy(),0.05)) nemici.push_back(n);
 	}
 }
 
