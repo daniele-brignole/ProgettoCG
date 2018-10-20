@@ -15,7 +15,9 @@ Marine::~Marine()
 
 void Marine::feritaSubita(int danno)
 {
-	this->pv--;
+	if (danno == 18) pv--;
+	if (danno == 19) pv -= 3;
+	if (danno == 5) pv -= 2;
 	if (pv <= 0)gameover = true;
 
 }

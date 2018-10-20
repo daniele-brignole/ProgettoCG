@@ -263,6 +263,7 @@ void MyModel::SetProjection()
 
 bool MyModel::DrawGLScene(void)
 {
+
 	room->addEnemy();
 	room->gestisci();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear The Screen And The Depth Buffer
@@ -283,7 +284,8 @@ bool MyModel::DrawGLScene(void)
 
 	this->Tstamp = t;
 	//  TIMING - end
-
+	round = room->GetContaround();
+	remaining = room->getWave(round-1);
 	
 	glClear(GL_COLOR_BUFFER_BIT);
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
@@ -366,7 +368,7 @@ bool MyModel::DrawGLScene(void)
 		}
 		if (i < room->getShotSize()) {
 			e = room->updateShots(i);
-			if(room->checkMarineCollision(e.nowx, e.nowy, 0.03)) this->marine.feritaSubita(1);
+			if(room->checkMarineCollision(e.nowx, e.nowy, 0.03)) this->marine.feritaSubita(e.type);
 			glBindTexture(GL_TEXTURE_2D, texture[e.type]);
 			glBegin(GL_QUADS);
 			glTexCoord2f(0, 0);
@@ -413,6 +415,7 @@ bool MyModel::DrawGLScene(void)
 				//
 			}
 			room->eraseEnemy(i);
+			//remaining--;
 			glLoadIdentity();
 		}
 		
@@ -481,15 +484,9 @@ bool MyModel::DrawGLScene(void)
 	glRasterPos3f(-(float)plx - PixToCoord_X(600), (float)ply - PixToCoord_Y(21),
 		-4);
 
-	// compute fps and write text
-	/*this->frames++;
-	if (this->frames > 18) {
-		this->fps = frames / frameTime;
-		this->frames = 0; this->frameTime = 0;
-	}*/
+	
 	int health = this->getMarine().getPv();
-	int round = room->GetContaround();
-	int remaining = room->getWave(round);
+	
 	this->glPrint("Wave: %d",
 		round);
 	glColor3f(1.0, 0.0, 0.0);
@@ -497,6 +494,11 @@ bool MyModel::DrawGLScene(void)
 		-4);
 	this->glPrint("Health: %d",
 		health);
+	glColor3f(0.0f, 1.0f, 0.0f);
+	glRasterPos3f(-(float)plx - PixToCoord_X(600), (float)ply - PixToCoord_Y(300),
+		-4);
+	this->glPrint("Nemici rimasti: %d",
+		remaining);
 	/*	
 	if (this->Full_elapsed < 6) {
 		glRasterPos3f(-(float)plx + PixToCoord_X(10), (float)-ply + PixToCoord_Y(21),

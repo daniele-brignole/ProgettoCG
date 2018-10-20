@@ -75,6 +75,8 @@ private:
 	clock_t now = 0;
 	clock_t last = 0;
 	double remain = 10;
+	int remaining;
+	int round;
 	//  model data
 	std::vector<Vertex> Background;   // background
 	

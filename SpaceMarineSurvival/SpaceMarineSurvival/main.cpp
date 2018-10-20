@@ -390,7 +390,7 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 	if (!gameover) {
 		return 0;         // failure
 	}
-	gameover->setRepeat(false);
+	gameover->setRepeat(true);
 	gameover->setVolume(0.5f);
 	
 	OutputStreamPtr marineshot(OpenSound(device, "../sounds/fucile.mp3", true));
@@ -582,8 +582,9 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 		}
 		//schermata game over
 		while (state == 3) {
+			
+			if (gameover->getRepeat()) gameover->play();
 			gameover->setRepeat(false);
-			gameover->play();
 			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))	// Is There A Message Waiting?
 			{
 				if (msg.message == WM_QUIT)				// Have We Received A Quit Message?

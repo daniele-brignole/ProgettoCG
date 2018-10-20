@@ -183,8 +183,8 @@ bool stanza::checkEnemyCollision(float x, float y, double hitbox)
 			if (nemici[i].damage()) {
 				nemici[i].setMorto(true);
 				contanemici--;
-				wave[contaround - 1]--;
-				if (wave[contaround-1] <= 0) contaround++;
+				this->wave[contaround - 1]--;
+				if (this->wave[contaround-1] <= 0) contaround++;
 				if (contaround >= 4) fine = true;
 			}
 			return true;
@@ -207,9 +207,9 @@ bool stanza::isFine()
 	return fine;
 }
 
-int stanza::getWave(int wave)
+int stanza::getWave(int i)
 {
-	return this->wave[wave];
+	return this->wave[i];
 }
 
 int stanza::GetContaround()
