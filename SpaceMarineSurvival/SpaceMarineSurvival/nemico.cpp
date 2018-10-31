@@ -13,6 +13,8 @@ nemico::nemico(stanza* stz,int pv)
 	posx = (float) distrx(eng);
 	device = audiere::AudioDevicePtr(audiere::OpenDevice());
 	laser = audiere::OutputStreamPtr(audiere::OpenSound(device, "../sounds/laser.mp3", true));
+	//death = audiere::OutputStreamPtr(audiere::OpenSound(device, "../sounds/enemyDeath.wav", true));
+	//death->setVolume(0.20f);
 	laser->setVolume(0.10f);
 	std::uniform_real_distribution<> distry(-1, 1);
 	posy = (float) distry(eng);
@@ -34,9 +36,9 @@ void nemico::decidi()
 	if (remain < 0 || last > 0) {
 		remain = (double)(now - last) / (double)CLOCKS_PER_SEC;
 	}
-	if (decisionNumber < 60) move();
+	if (decisionNumber < 70) move();
 	else {
-		if (remain >= 1.5) {
+		if (remain >= 2.0) {
 			last = clock();
 			spara();
 			remain = -1;
@@ -183,6 +185,8 @@ void nemico::moveClose()
 		}		
 	}
 	else this->attack = true;
+		
+	
 }
 void nemico::setMov(float mov) {
 	this->mov = mov;
@@ -208,6 +212,8 @@ bool nemico::isMorto()
 void nemico::setMorto(bool m)
 {
 	this->morto = m;
+	
 }
+
 
 

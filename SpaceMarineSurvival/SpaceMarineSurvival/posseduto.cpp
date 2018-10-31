@@ -2,9 +2,9 @@
 
 
 
-posseduto::posseduto(int id,stanza* s):nemico(s,10)
+posseduto::posseduto(int id,stanza* s):nemico(s,8)
 {
-	pv = 10;
+	pv = 8;
 	this->id = id;
 	mov = 0.005;
 	setMov(mov);

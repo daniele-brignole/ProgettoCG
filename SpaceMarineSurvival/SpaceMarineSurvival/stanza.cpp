@@ -55,10 +55,13 @@ std::vector<ostacolo>& stanza::getOstacoli() {
 
 void stanza::addEnemy()
 {
-	if (contanemici < 7) {
-		contanemici++;
+	if (contanemici < 5) {
+		
 		nemico n = generaNemico();
-		if(!checkCollision(n.getPosx(),n.getPosy(),0.05)) nemici.push_back(n);
+		if (!checkCollision(n.getPosx(), n.getPosy(), 0.05)) { 
+			nemici.push_back(n);
+			contanemici++;
+		}
 	}
 }
 
@@ -182,6 +185,7 @@ bool stanza::checkEnemyCollision(float x, float y, double hitbox)
 		{
 			if (nemici[i].damage()) {
 				nemici[i].setMorto(true);
+				//nemici[i].musicDeath();
 				contanemici--;
 				this->wave[contaround - 1]--;
 				if (this->wave[contaround-1] <= 0) contaround++;

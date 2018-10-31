@@ -1,37 +1,23 @@
 ﻿  stanza.cpp
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\stanza.cpp(47): warning C4018: '<': errata corrispondenza tra signed e unsigned
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\stanza.cpp(86): warning C4018: '<': errata corrispondenza tra signed e unsigned
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\stanza.cpp(132): warning C4244: 'argomento': conversione da 'double' a 'float'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\stanza.cpp(146): warning C4244: 'argomento': conversione da 'double' a 'float'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\stanza.cpp(177): warning C4018: '<': errata corrispondenza tra signed e unsigned
-  Model.cpp
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.h(96): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(295): warning C4018: '<': errata corrispondenza tra signed e unsigned
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(328): warning C4018: '<': errata corrispondenza tra signed e unsigned
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(332): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(335): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(338): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(341): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(348): warning C4018: '>': errata corrispondenza tra signed e unsigned
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(350): warning C4018: '<': errata corrispondenza tra signed e unsigned
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(357): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(360): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(363): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(366): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(375): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(378): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(381): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(384): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(393): warning C4018: '<': errata corrispondenza tra signed e unsigned
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(402): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(405): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(408): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(411): warning C4244: 'argomento': conversione da 'double' a 'GLfloat'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(616): warning C4244: 'argomento': conversione da 'GLdouble' a 'float'. Possibile perdita di dati.
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(637): warning C4101: 'r': variabile locale senza riferimenti
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\model.cpp(671): warning C4101: 'r': variabile locale senza riferimenti
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\stanza.cpp(47): warning C4018: '<': errata corrispondenza tra signed e unsigned
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\stanza.cpp(89): warning C4018: '<': errata corrispondenza tra signed e unsigned
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\stanza.cpp(135): warning C4244: 'argomento': conversione da 'double' a 'float'. Possibile perdita di dati.
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\stanza.cpp(149): warning C4244: 'argomento': conversione da 'double' a 'float'. Possibile perdita di dati.
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\stanza.cpp(180): warning C4018: '<': errata corrispondenza tra signed e unsigned
+  nemico.cpp
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\nemico.cpp(177): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\nemico.cpp(178): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\nemico.cpp(183): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\nemico.cpp(184): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
   Generazione del codice in corso...
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\stanza.cpp(82): warning C4715: 'stanza::generaNemico': non tutti i percorsi di controllo restituiscono un valore
-c:\users\daniele\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\stanza.cpp(153): warning C4715: 'stanza::updateShots': non tutti i percorsi di controllo restituiscono un valore
-  SpaceMarineSurvival.vcxproj -> C:\Users\Daniele\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.exe
-  SpaceMarineSurvival.vcxproj -> C:\Users\Daniele\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.pdb (Partial PDB)
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\stanza.cpp(85): warning C4715: 'stanza::generaNemico': non tutti i percorsi di controllo restituiscono un valore
+c:\users\tiziana\documents\github\progettocg\spacemarinesurvival\spacemarinesurvival\stanza.cpp(156): warning C4715: 'stanza::updateShots': non tutti i percorsi di controllo restituiscono un valore
+  Omissione in corso... (nessuna modifica importante rilevata)
+  posseduto.cpp
+  main.cpp
+  cultista.cpp
+  chmarine.cpp
+  Model.cpp
+  Marine.cpp
+  SpaceMarineSurvival.vcxproj -> C:\Users\Tiziana\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.exe
+  SpaceMarineSurvival.vcxproj -> C:\Users\Tiziana\Documents\GitHub\ProgettoCG\SpaceMarineSurvival\Debug\SpaceMarineSurvival.pdb (Partial PDB)

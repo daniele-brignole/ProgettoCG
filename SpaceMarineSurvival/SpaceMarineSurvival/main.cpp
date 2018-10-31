@@ -362,7 +362,7 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 	Data.fullscreen = false;  // removed the boring request...
 
 							  // Create Our OpenGL Window
-	if (!CreateGLWindow("Basic 2D game skeleton", 1416, 600, 16, Data.fullscreen))
+	if (!CreateGLWindow("Space Marine Survival", 1416, 600, 16, Data.fullscreen))
 	{
 		return 0;									// Quit If Window Was Not Created
 	}
@@ -393,9 +393,15 @@ int WINAPI WinMain(HINSTANCE	hInstance,			// Instance
 	gameover->setRepeat(true);
 	gameover->setVolume(0.5f);
 	
+	/*OutputStreamPtr gameclear(OpenSound(device, "../sounds/clear.mp3", true));
+	if (!gameclear) {
+		return 0;         // failure
+	}
+	gameclear->setRepeat(true);
+	gameclear->setVolume(0.5f);
+	*/
 	OutputStreamPtr marineshot(OpenSound(device, "../sounds/fucile.mp3", true));
 	marineshot->setVolume(0.1f);
-
 	
 	//  AUDIO - end
 

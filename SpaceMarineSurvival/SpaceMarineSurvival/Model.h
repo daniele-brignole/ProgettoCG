@@ -28,6 +28,14 @@ using std::vector;
 //class stanza;
 //class nemico;
 class stanza;
+struct effect {
+	double x;
+	double y;
+	clock_t now=0;
+	clock_t last=0;
+	int counter = 0;
+	int type;
+};
 class Vertex {
 	
 public:
@@ -74,8 +82,10 @@ private:
 	stanza *room;
 	clock_t now = 0;
 	clock_t last = 0;
+	vector<effect> blows;
 	double remain = 10;
 	int remaining;
+	int pcType = 0;
 	int round;
 	//  model data
 	std::vector<Vertex> Background;   // background

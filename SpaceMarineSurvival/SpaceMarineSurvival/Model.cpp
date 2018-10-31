@@ -83,7 +83,7 @@ bool MyModel::LoadGLTextures(void)
 {
 	/* load an image file directly as a new OpenGL texture */
 	texture[0] = SOIL_load_OGL_texture
-	("../textures/metal_floor.jpg",
+	("../textures/metal_floor3.jpg",
 		SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (texture[0] == 0) return false;
 	
@@ -214,18 +214,18 @@ bool MyModel::LoadGLTextures(void)
 		"../textures/boom.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (texture[32] == 0) return false;
 
-	/*texture[33] = SOIL_load_OGL_texture(
-		"../textures/boom2.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	texture[33] = SOIL_load_OGL_texture(
+		"../textures/computer1.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (texture[33] == 0) return false;
 
 	texture[34] = SOIL_load_OGL_texture(
-		"../textures/boom3.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+		"../textures/computer2.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (texture[34] == 0) return false;
 	
 	texture[35] = SOIL_load_OGL_texture(
-		"../textures/boom4.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+		"../textures/computer3.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (texture[35] == 0) return false;
-
+	/*
 	texture[36] = SOIL_load_OGL_texture(
 		"../textures/boom5.TGA", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (texture[36] == 0) return false;
@@ -323,7 +323,9 @@ bool MyModel::DrawGLScene(void)
 	
 	
 	//generazione ostacoli
-	glBindTexture(GL_TEXTURE_2D, texture[9]);
+	pcType = 33 + ((int((Full_elapsed * 8))) % 3);
+	glBindTexture(GL_TEXTURE_2D, texture[pcType]);
+	
 	std::vector<ostacolo> blocchi = room->getOstacoli();
 	for (int b = 0; b < blocchi.size(); b++) {
 		glBegin(GL_QUADS);
@@ -392,31 +394,13 @@ bool MyModel::DrawGLScene(void)
 	int texF = 0;
 	for (int i = 0; i < NMI.size(); i++) {
 		if (NMI[i].isMorto()) {
-			glBindTexture(GL_TEXTURE_2D, texture[32]);
-			for (int k = 0; k < 7 ; k++) {
-				double j = (k / 7.0) ;
-				double h = (k+1) / 7.0 ;
-				glMatrixMode(GL_MODELVIEW);
-				glLoadIdentity();
-				glBegin(GL_QUADS);
-				glTexCoord2f(j, 0);
-				glVertex3f(NMI[i].getPosx() - 0.05f, NMI[i].getPosy() - 0.05f, p.z);
-
-				glTexCoord2f(h, 0);
-				glVertex3f(NMI[i].getPosx() + 0.05f, NMI[i].getPosy() - 0.05f, p.z);
-
-				glTexCoord2f(h, 1);
-				glVertex3f(NMI[i].getPosx() + 0.05f, NMI[i].getPosy() + 0.05f, p.z);
-
-				glTexCoord2f(j, 1);
-				glVertex3f(NMI[i].getPosx() - 0.05f, NMI[i].getPosy() + 0.05f, p.z);
-				glEnd();
-				//SwapBuffers(this->hDC);
-				//
-			}
+			effect b;
+			b.x = NMI[i].getPosx();
+			b.y = NMI[i].getPosy();
+			b.type = 32;
+			blows.push_back(b);
 			room->eraseEnemy(i);
-			//remaining--;
-			glLoadIdentity();
+			
 		}
 		
 		else {
@@ -441,7 +425,10 @@ bool MyModel::DrawGLScene(void)
 			if (NMI[i].getAttack() && remain >= 2.0) {
 				last = clock();
 				this->marine.feritaSubita(5);
-				texF = 20 + ((int((last * 19))) % 8);
+				effect t;
+				t.type = 20;
+				blows.push_back(t);
+				/*texF = 20 + ((int((last * 19))) % 8);
 				//for (int l = 20; l < 28; l++) {
 				glBindTexture(GL_TEXTURE_2D, texture[texF]);
 				glBegin(GL_QUADS);
@@ -459,11 +446,64 @@ bool MyModel::DrawGLScene(void)
 				glEnd();
 				//}
 				remain = -1;
+				*/
 			}
 		}
 	}
-	
-	
+	if (blows.size() != 0) {
+		
+		for (int h = 0; h < blows.size(); h++) {
+			if (blows[h].type == 32) {
+				
+				glBindTexture(GL_TEXTURE_2D, texture[32]);
+				blows[h].now = clock();
+				double j = (blows[h].counter / 7.0);
+				double p = (blows[h].counter + 1) / 7.0;
+				
+				glBegin(GL_QUADS);
+				glTexCoord2f(j, 0);
+				glVertex3f(blows[h].x - 0.08f, blows[h].y - 0.08f, -5);
+
+				glTexCoord2f(p, 0);
+				glVertex3f(blows[h].x + 0.08f, blows[h].y - 0.08f, -5);
+
+				glTexCoord2f(p, 1);
+				glVertex3f(blows[h].x + 0.08f, blows[h].y + 0.08f, -5);
+
+				glTexCoord2f(j, 1);
+				glVertex3f(blows[h].x - 0.08f, blows[h].y + 0.08f, -5);
+				glEnd();
+				
+				if ((double)(blows[h].now - blows[h].last) / (double)CLOCKS_PER_SEC > 1.0 / 19.0) {
+					blows[h].last = clock();
+					blows[h].counter++;
+				}
+				if (blows[h].counter >= 7) blows.erase(blows.begin() + h);
+			}
+			else if (blows[h].type == 20) {
+				blows[h].now = clock();
+				glBindTexture(GL_TEXTURE_2D, texture[20+blows[h].counter]);
+				glBegin(GL_QUADS);
+				glTexCoord2f(0, 0);
+				glVertex3f(p.x - 0.08f, p.y - 0.08f, p.z);
+
+				glTexCoord2f(1, 0);
+				glVertex3f(p.x + 0.08f, p.y - 0.08f, p.z);
+
+				glTexCoord2f(1, 1);
+				glVertex3f(p.x + 0.08f, p.y + 0.08f, p.z);
+
+				glTexCoord2f(0, 1);
+				glVertex3f(p.x - 0.08f, p.y + 0.08f, p.z);
+				glEnd();
+				if ((double)(blows[h].now - blows[h].last) / (double)CLOCKS_PER_SEC > 1.0 / 19.0) {
+					blows[h].last = clock();
+					blows[h].counter++;
+				}
+				if (blows[h].counter >= 8) blows.erase(blows.begin() + h);
+			}
+		}
+	}
 	glDisable(GL_ALPHA_TEST);
 
 	// Reset The Current Modelview Matrix

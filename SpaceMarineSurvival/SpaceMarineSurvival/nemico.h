@@ -29,10 +29,12 @@ public:
 	bool getAttack();
 	bool isMorto();
 	void setMorto(bool m);
+	void musicDeath();
 private:
 	int id;
 	audiere::AudioDevicePtr device;
 	audiere::OutputStreamPtr laser;
+	//audiere::OutputStreamPtr death;
 	bool morto = false;
 	bool attack = false;
 	int verso = 10;
